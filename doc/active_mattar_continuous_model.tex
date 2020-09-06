@@ -1,0 +1,58 @@
+\documentclass[12pt,dvipdfmx,svgnames,a4paper,uplatex]{ujreport}
+% +++++++++++++++++++++++++++++++++++++++++++
+% パッケージの導入
+% +++++++++++++++++++++++++++++++++++++++++++
+%
+% ===========================================
+% 原稿設定
+% ===========================================
+% \usepackage{hyoshi}  % 表紙用スタイルファイル
+% 原稿のサイズ
+\usepackage[top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry}
+\usepackage{relsize}
+%
+% ===========================================
+% 図・表関係
+% ===========================================
+\usepackage{graphicx}
+\graphicspath{{./pics}}  % \includegraphicsで参照するディレクトリ
+%
+% ===========================================
+% 参考文献
+% ===========================================
+\usepackage[url=false,isbn=false,doi=false]{biblatex}
+\addbibresource{./bib_textbooks.bib}  % 教科書など
+% \addbibresource{./bib_articles.bib}  % 論文など
+%
+% ===========================================
+% 独自スタイルの導入
+% ===========================================
+\usepackage{/home/ryo/.config/LaTeX/mystyle}
+\renewcommand{\prechaptername}{第}  % mystyle.styに書くとbeamerでも読み込まれるため，エラーとなる
+\renewcommand{\postchaptername}{章}
+%
+% ===========================================
+% 表紙の記述
+% ===========================================
+\title{\underline{title}}
+\author{name}
+\date{\today}
+
+% +++++++++++++++++++++++++++++++++++++++++++
+% 本文
+% +++++++++++++++++++++++++++++++++++++++++++
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+Script is written here.
+
+% ===========================================
+% 以下，章ごとに分割されたLaTeXファイルを読み込む
+% ===========================================
+% \input{./hoge.tex}
+
+% \printbibliography[title=参考文献]
+
+\end{document}
