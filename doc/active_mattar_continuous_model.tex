@@ -20,18 +20,22 @@
 % ===========================================
 % 参考文献
 % ===========================================
-\usepackage[url=false,isbn=false,doi=false]{biblatex}
+\usepackage[url=false,isbn=false,doi=false,sorting=none,eprint=false]{biblatex}
 \addbibresource{./ActiveMatter_ContinuousModel.bib}
 %
 % ===========================================
 % 独自スタイルの導入
 % ===========================================
 \usepackage{/home/ryo/.config/LaTeX/mystyle}
+{
+  \theoremstyle{plain}
+  \newtheorem{assumption}{仮定}
+}
 %
 % ===========================================
 % 表紙の記述
 % ===========================================
-\title{\underline{アクティブマター乱流のメゾスケール連続体モデル}}
+\title{アクティブマター乱流のメゾスケール連続体モデル}
 \author{荒木 亮}
 \date{\today}
 
