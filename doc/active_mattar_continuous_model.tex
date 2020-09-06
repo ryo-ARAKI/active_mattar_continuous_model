@@ -74,6 +74,73 @@
 そのため，仮定\ref{as:mean_velocity_field}は十分に高密度な環境で妥当としてよい．
 
 
+\subsection{場の方程式}
+\label{subsec:field_equation}
+
+仮定\ref{as:incompressibility}の非圧縮性は
+\begin{equation}
+  \div{\vb*{v}} = \pdv{v_i}{x_i} = 0 \qquad i=1,\dots,d
+  \label{eq:incompressibility}
+\end{equation}
+で定義できる．
+ただし\(d\)は空間次元である．
+
+平均流速\(\vb*{v}\)は一般化された\(d\)次元Navier--Stokes方程式
+\begin{equation}
+  \pdv{\vb*{v}}{t} + \vb*{v} \cdot \grad \vb*{v} = -\grad p - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \div \vb*{E}
+  \label{eq:generalized_NS}
+\end{equation}
+で記述される．
+\(p\)は圧力，\(\alpha\)と\(\beta\)はパラメータで，\(\vb*{v}\)に依存するひずみ率テンソル（rate-of-strain tensor）\(\vb*{E}\)は以降で定義する．
+
+\((\alpha + \beta \abs{\vb*{v}}^2) \vb*{v}\)はToner-Tuモデルでの局所駆動項である．
+安定性より\(\beta \ge 0\)が要求されるが，\(\alpha\)は正負どちらでも良い．
+\(\alpha > 0\)のときこの項は系を\(\vb*{v}=0\)の等方平衡状態へ駆動する．
+\(\alpha < 0\)かつ\(\beta > 0\)のとき，速度ポテンシャルは双安定となり
+\begin{equation}
+  v_0 = \sqrt{\frac{\abs{a}}{\beta}}
+  \label{eq:bistable_velocity_potential}
+\end{equation}
+なる特徴速さで決まる大域極秩序状態となる．
+
+最後に対称かつトレースなしテンソル\(\vb*{E}\)について議論する．
+これを，active nematicsの理論を元にして
+\begin{equation}
+  E_{ij} = \Gamma_0 \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) - \Gamma_2 \laplacian \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) + S q_{ij}
+  \label{eq:rate-of-strain_tensor}
+\end{equation}
+と表現する．
+\begin{equation}
+  q_{ij} = v_i v_j - \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2
+  \label{eq:mean_field_approximation_of_Q_tensor}
+\end{equation}
+は\(\vb*{Q}\)テンソルの平均場近似であり，アクティブ応力（active stress）の寄与を表す．
+\(\gamma_0 > 0\)のとき\(S=\Gamma_2=0\)ととれば，式~\ref{eq:mean_field_approximation_of_Q_tensor}は通常の粘度\(\Gamma_0\)のrate-of-strainテンソルとなる．
+
+安定性解析から，\(\Gamma_0 < 0\)を許すとき\(\Gamma_2 > 0\)である必要がある．
+また，\(S>0\)はpullerで\(S<0\)はpusherなアクティブマターを表現する．
+
+直感的には，\(\Gamma\)の項は応力テンソルの（\(\vb*{v}\)に対し線形な）機械的な展開から生じ，\(\Gamma_2\)は長距離多粒子相関に対応すると理解できる．
+
+式~\ref{eq:rate-of-strain_tensor}を式~\ref{eq:generalized_NS}に代入して閉じた方程式が得られる．
+\begin{empheq}{align}
+  \qty(\div \vb*{E})_j &= \pdv{E_{ij}}{x_i} = \Gamma_0 \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) - \Gamma_2 \laplacian \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_i} \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2) \nonumber \\
+    &= \Gamma_0 \pdv{v_j}{x_i x_i} - \Gamma_2 \laplacian \pdv{v_j}{x_i x_i} + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_j} \frac{1}{d} \abs{\vb*{v}}^2) \nonumber \\
+  \div \vb*{E} &= \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v} + S (\vb*{v} \cdot \grad) \vb*{v} - \frac{S}{d} \grad \abs{\vb*{v}}^2 \nonumber
+\end{empheq}
+ここで
+\begin{equation}
+  \lambda_0 = 1 - S \qquad \lambda_1 = -\frac{S}{d}
+  \label{eq:def_lambda0_lambda1}
+\end{equation}
+とおけば，
+\begin{equation}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad \vb*{v} = -\grad p + \lambda_1 \grad \vb*{v}^2 - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+  \label{eq:continuous_model}
+\end{equation}
+をえる．
+
+\(\Gamma\)の項はSwift--Hohenberg理論における高次微分項と似ており，このモデルにおいて準カオス的な流れパターンを作り出すために不可欠な項である．
 
 
 \section{2次元安定性解析}
