@@ -7,7 +7,7 @@ Implement continuous model describing highly concentrated active matter first pr
 The model consists of fourth-order PDE
 
 $$
-\frac{\partial \bm{v}}{\partial t} + \lambda_0 \bm{v} \cdot \bm{\nabla} \bm{v} = - \bm{\nabla} p + \lambda_1 \bm{\nabla} \bm{v}^2 - (\alpha + \beta |\bm{v}|^2) \bm{v} - \Gamma_0 \Delta \bm{v} - \Gamma_2 \Delta^2 \bm{v}
+\frac{\partial \bm{v}}{\partial t} + \lambda_0 \bm{v} \cdot \bm{\nabla} \bm{v} = - \bm{\nabla} p + \lambda_1 \bm{\nabla} \bm{v}^2 - \beta (\bm{v}^2 - v_0^2) \bm{v} + \Gamma_0 \Delta \bm{v} - \Gamma_2 \Delta^2 \bm{v}
 $$
 
 and incompressible condition
