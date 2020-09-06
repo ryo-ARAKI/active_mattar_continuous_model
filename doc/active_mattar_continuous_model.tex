@@ -47,6 +47,33 @@
 \tableofcontents
 
 \section{連続体モデル方程式の導出}
+\label{sec:derive_continuous_model}
+
+本節では，先行研究~\cite{Wensink2012b}（とその supplemental material~\cite{Wensink2012a}）および同じ著者らによる論文~\cite{Dunkel2013a}に基づいて，高密度なバクテリア懸濁液などのアクティブマターをよく記述する連続体モデルを導出する．
+
+
+\subsection{仮定とその正当化}
+\label{subsec:assumptions_justification}
+
+連続体モデルを導出するために次を仮定する．
+
+\begin{assumption}
+  \label{as:incompressibility}
+  十分に高密度なバクテリア懸濁液（や自己推進ロッド（SPR, \textbf{S}elf \textbf{P}ropelled \textbf{R}ods）の集合）は，非圧縮アクティブ流体としてよく近似できる．
+\end{assumption}
+
+\begin{assumption}
+  \label{as:mean_velocity_field}
+  バクテリア流体の本質的なダイナミクスは平均流速\(\vb*{v}(t,\vb*{x})\)で捉えられる~\footnote{ここでの「平均」は粗視化して連続場として捉えるという意味か？}．
+\end{assumption}
+
+仮定\ref{as:incompressibility}はバクテリア乱流の実験やSPRの数値計算において密度ゆらぎが小さいことから正当化できる．
+仮定\ref{as:mean_velocity_field}には議論の余地がある．
+アクティブマターはしばしば長距離相互作用をもち，このとき平均流速と平均の向きはdecoupleされているためである．
+しかし，十分に高密度な環境下ではこれらはよくcoupleする．
+そのため，仮定\ref{as:mean_velocity_field}は十分に高密度な環境で妥当としてよい．
+
+
 
 
 \section{2次元安定性解析}
