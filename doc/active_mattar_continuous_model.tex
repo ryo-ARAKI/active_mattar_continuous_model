@@ -148,6 +148,52 @@
 
 \section{方程式の無次元化}
 
+本節では，このモデルを二次元で解いて乱流パターン形成について調べた先行研究~\footnote{第二著者にW. Bosが入っている}~\cite[脚注28]{James}を参考に，連続モデル方程式~\ref{eq:continuous_model}の無次元化をおこなう．
+
+まず，\(\lambda_1\)の項を圧力項にくりこむ．
+つまり，\(p - \lambda_1 \vb*{v}^2 \to p\)とすれば\(-\grad p + \lambda_1 \grad \vb*{v}^2 \to \grad p\)となる．
+これにより，式~\ref{eq:continuous_model}は
+\begin{equation}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad \vb*{v} = -\grad p - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+  \label{eq:continuous_model_absorb_lambda1}
+\end{equation}
+となる．
+
+続いて，時間スケール\(T = 4\Gamma_2/\Gamma_0^2\)と長さスケール\(L = \sqrt{-2\Gamma_2/\Gamma_0}\)を導入し，方程式を無次元化する~\footnote{この量はどこから出てくる？安定性解析？}．
+\begin{equation}
+  \pdv{t} \to \frac{1}{T} \pdv{t}, \qquad \vb*{v} \to \frac{L}{T} \vb*{v}, \qquad \grad \to \frac{1}{L} \grad, \qquad p \to \frac{L^2}{T^2} p
+  \label{eq:nondimensionalization_list}
+\end{equation}
+これによって式~\ref{eq:continuous_model_absorb_lambda1}を無次元化していく．
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \pdv{\vb*{v}}{t} &\to \frac{L}{T^2} \pdv{\vb*{v}}{t} \\
+  \lambda_0 \vb*{v} \cdot \grad \vb*{v} &\to \lambda_0 \frac{L}{T^2} \vb*{v} \cdot \grad \vb*{v} \\
+  \grad p &\to \frac{L}{T^2} \grad p \\
+  (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} &\to \qty(\alpha \frac{L}{T} + \beta \frac{L^3}{T^3} \abs{\vb*{v}}^2) \vb*{v} \\
+  \Gamma_0 \laplacian \vb*{v} &\to \Gamma_0 \frac{1}{LT} \laplacian \vb*{v} \\
+  \Gamma_2 \qty(\laplacian)^2 \vb*{v} &\to \Gamma_2 \frac{1}{L^3 T} \qty(\laplacian)^2 \vb*{v}
+\end{empheq}
+全ての項に（時間微分項の係数の逆数である）\(T^2/L\)を乗じて，
+\begin{empheq}{align}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad \vb*{v} = &-\grad p - \qty(\alpha T + \beta \frac{L^2}{T} \abs{\vb*{v}}^2) \vb*{v} \nonumber \\
+    &+ \Gamma_0 \frac{T}{L^2} \laplacian \vb*{v} - \Gamma_2 \frac{T}{L^4} \qty(\laplacian)^2 \vb*{v}
+  \label{eq:continuous_model_absorb_lambda1_nondimensionalise}
+\end{empheq}
+となる．
+よって，先行研究の脚注~\cite[脚注28]{James}にあるように
+\begin{equation}
+  \lambda_0 \to \lambda, \qquad \alpha T \to \alpha + 1, \qquad \beta \frac{L^2}{T} \to \beta, \qquad \Gamma_0 \frac{T}{L^2} \to -2, \qquad \Gamma_2 \frac{T}{L^4} \to 1
+  \label{eq:redefine_parameters}
+\end{equation}
+と書き直して
+\begin{empheq}{align}
+  \pdv{\vb*{v}}{t} + \lambda \vb*{v} \cdot \grad \vb*{v} &= -\grad p - \qty(\alpha + 1) \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v} - 2\laplacian \vb*{v} - \qty(\laplacian)^2 \vb*{v} \nonumber \\
+    &= -\grad p - \qty(1+\laplacian)^2 \vb*{v} - \alpha \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v}
+  \label{eq:continuous_model_nondimensionalise}
+\end{empheq}
+となる．
+式~\ref{eq:continuous_model}にあったパラメータのうち，\(\lambda_1\)と\((\Gamma_0, \Gamma_2)\)がそれぞれ圧力\(p\)へのくりこみと勝手な変数変換によって消えていることに注意する~\footnote{これらの操作の妥当性？とくに\(\Gamma\)の項を定数としているのはよいのか？}．
+
 
 \section{渦度方程式の導出}
 
