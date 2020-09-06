@@ -225,6 +225,19 @@
 
 \section{Fourierスペクトル法を用いた数値計算に向けて}
 
+\subsection{Fourierスペクトル法のアルゴリズム}
+
+Fourierスペクトル法では，式~\ref{eq:continuous_model_nondimensionalise_vorticity}の渦度\(\vb*{\omega}\)をFourier展開して波数空間で時間発展をおこなう．
+ただし，非線形項の評価を波数空間でおこなうと総波数モードを\(N\)として\(N^2\)の演算が必要となり，非効率的である．
+この問題は，FFT（高速Fourier変換，\textbf{F}ast \textbf{F}ourier \textbf{T}ransform）を用いて物理量を実空間に写して非線形項を評価することで\(N \log N\)の演算量となり解決できる．
+
+
+\subsection{Dealiasingについて}
+
+また，非線形項の評価にともなって生じるalias誤差を除去するために\(2/3\)則~\footnote{波数モードのうち低波数の\(2/3\)側のみを用いて非線形項を評価することで，本来定義しているよりも高次モードが発生することを防ぐ}や\(3/2\)則~\footnote{非線形項の評価の際，本来の定義の\(3/2\)倍のモードを用意して計算することで「折り返し」によって低波数側に誤差が伝播することを防ぐ}をもちいてdealiasingをおこなう．
+
+※N--S方程式は\(2\)次の非線形性なので\(2/3\)則あるいは\(3/2\)則で良い．今回のモデルは\(3\)次の非線形性をもつため，dealiasing手法についてよく考える必要がある~\footnote{文献~\cite{James}では ``\(1/2\) dealiasing'' を実装している？}．
+
 
 \printbibliography[title=参考文献]
 
