@@ -88,7 +88,7 @@
 平均流速\(\vb*{v}\)は一般化された\(d\)次元Navier--Stokes方程式
 \begin{equation}
   \pdv{\vb*{v}}{t} + \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \div{\vb*{E}}
-  \label{eq:generalized_NS}
+  \label{eq:generalised_NS}
 \end{equation}
 で記述される．
 \(p\)は圧力，\(\alpha\)と\(\beta\)はパラメータで，\(\vb*{v}\)に依存するひずみ率テンソル（rate-of-strain tensor）\(\vb*{E}\)は以降で定義する．
@@ -122,7 +122,7 @@
 
 直感的には，\(\Gamma\)の項は応力テンソルの（\(\vb*{v}\)に対し線形な）機械的な展開から生じ，\(\Gamma_2\)は長距離多粒子相関に対応すると理解できる．
 
-式~\ref{eq:rate-of-strain_tensor}を式~\ref{eq:generalized_NS}に代入して閉じた方程式が得られる．
+式~\ref{eq:rate-of-strain_tensor}を式~\ref{eq:generalised_NS}に代入して閉じた方程式が得られる．
 \begin{empheq}{align}
   \qty(\div{\vb*{E}})_j &= \pdv{E_{ij}}{x_i} = \Gamma_0 \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) - \Gamma_2 \laplacian \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_i} \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2) \nonumber \\
     &= \Gamma_0 \pdv{v_j}{x_i x_i} - \Gamma_2 \laplacian \pdv{v_j}{x_i x_i} + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_j} \frac{1}{d} \abs{\vb*{v}}^2) \nonumber \\
@@ -144,9 +144,11 @@
 
 
 \section{2次元安定性解析}
+\label{sec:2D_stability_analysis}
 
 
-\section{方程式の無次元化}
+\section{支配方程式の無次元化}
+\label{sec:governing_equation_nondimensionalisation}
 
 本節では，このモデルを二次元で解いて乱流パターン形成について調べた先行研究~\footnote{第二著者にW. Bosが入っている}~\cite[脚注28]{James2017}を参考に，連続モデル方程式~\ref{eq:continuous_model}の無次元化をおこなう．
 
@@ -196,6 +198,7 @@
 
 
 \section{渦度方程式の導出}
+\label{sec:derive_vorticity_equation}
 
 一般に，数値流体力学において圧力を解くのはきわめて大変である．
 これは，圧力勾配の評価が非圧縮性と関係しており，圧力のPoisson方程式を解くためには全空間の情報が必要なためである．
@@ -224,8 +227,10 @@
 
 
 \section{Fourierスペクトル法を用いた数値計算に向けて}
+\label{sec:towards_numerical_simulation_using_Fourier_spectral_method}
 
 \subsection{Fourierスペクトル法のアルゴリズム}
+\label{sec:Fourier_spectral_method_algorithm}
 
 Fourierスペクトル法では，式~\ref{eq:continuous_model_nondimensionalise_vorticity}の渦度\(\vb*{\omega}\)をFourier展開して波数空間で時間発展をおこなう．
 ただし，非線形項の評価を波数空間でおこなうと総波数モードを\(N\)として\(N^2\)の演算が必要となり，非効率的である．
@@ -233,6 +238,7 @@ Fourierスペクトル法では，式~\ref{eq:continuous_model_nondimensionalise
 
 
 \subsection{Dealiasingについて}
+\label{sec:dealiasing}
 
 また，非線形項の評価にともなって生じるalias誤差を除去するために\(2/3\)則~\footnote{波数モードのうち低波数の\(2/3\)側のみを用いて非線形項を評価することで，本来定義しているよりも高次モードが発生することを防ぐ}や\(3/2\)則~\footnote{非線形項の評価の際，本来の定義の\(3/2\)倍のモードを用意して計算することで「折り返し」によって低波数側に誤差が伝播することを防ぐ}をもちいてdealiasingをおこなう．
 
