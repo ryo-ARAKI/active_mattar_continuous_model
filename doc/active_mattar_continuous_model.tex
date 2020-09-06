@@ -87,13 +87,13 @@
 
 平均流速\(\vb*{v}\)は一般化された\(d\)次元Navier--Stokes方程式
 \begin{equation}
-  \pdv{\vb*{v}}{t} + \vb*{v} \cdot \grad \vb*{v} = -\grad p - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \div \vb*{E}
+  \pdv{\vb*{v}}{t} + \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \div{\vb*{E}}
   \label{eq:generalized_NS}
 \end{equation}
 で記述される．
 \(p\)は圧力，\(\alpha\)と\(\beta\)はパラメータで，\(\vb*{v}\)に依存するひずみ率テンソル（rate-of-strain tensor）\(\vb*{E}\)は以降で定義する．
 
-\((\alpha + \beta \abs{\vb*{v}}^2) \vb*{v}\)はToner-Tuモデルでの局所駆動項である．
+\((\alpha + \beta \abs{\vb*{v}}^2) \vb*{v}\)はToner--Tuモデルでの局所駆動項である．
 安定性より\(\beta \ge 0\)が要求されるが，\(\alpha\)は正負どちらでも良い．
 \(\alpha > 0\)のときこの項は系を\(\vb*{v}=0\)の等方平衡状態へ駆動する．
 \(\alpha < 0\)かつ\(\beta > 0\)のとき，速度ポテンシャルは双安定となり
@@ -124,18 +124,18 @@
 
 式~\ref{eq:rate-of-strain_tensor}を式~\ref{eq:generalized_NS}に代入して閉じた方程式が得られる．
 \begin{empheq}{align}
-  \qty(\div \vb*{E})_j &= \pdv{E_{ij}}{x_i} = \Gamma_0 \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) - \Gamma_2 \laplacian \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_i} \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2) \nonumber \\
+  \qty(\div{\vb*{E}})_j &= \pdv{E_{ij}}{x_i} = \Gamma_0 \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) - \Gamma_2 \laplacian \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_i} \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2) \nonumber \\
     &= \Gamma_0 \pdv{v_j}{x_i x_i} - \Gamma_2 \laplacian \pdv{v_j}{x_i x_i} + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_j} \frac{1}{d} \abs{\vb*{v}}^2) \nonumber \\
-  \div \vb*{E} &= \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v} + S (\vb*{v} \cdot \grad) \vb*{v} - \frac{S}{d} \grad \abs{\vb*{v}}^2 \nonumber
+  \div{\vb*{E}} &= \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v} + S (\vb*{v} \cdot \grad) \vb*{v} - \frac{S}{d} \grad{\abs{\vb*{v}}^2} \nonumber
 \end{empheq}
 ここで
 \begin{equation}
-  \lambda_0 = 1 - S \qquad \lambda_1 = -\frac{S}{d}
+  \lambda_0 = 1 - S, \qquad \lambda_1 = -\frac{S}{d}
   \label{eq:def_lambda0_lambda1}
 \end{equation}
 とおけば，
 \begin{equation}
-  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad \vb*{v} = -\grad p + \lambda_1 \grad \vb*{v}^2 - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} + \lambda_1 \grad{\vb*{v}^2} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
   \label{eq:continuous_model}
 \end{equation}
 をえる．
@@ -151,10 +151,10 @@
 本節では，このモデルを二次元で解いて乱流パターン形成について調べた先行研究~\footnote{第二著者にW. Bosが入っている}~\cite[脚注28]{James}を参考に，連続モデル方程式~\ref{eq:continuous_model}の無次元化をおこなう．
 
 まず，\(\lambda_1\)の項を圧力項にくりこむ．
-つまり，\(p - \lambda_1 \vb*{v}^2 \to p\)とすれば\(-\grad p + \lambda_1 \grad \vb*{v}^2 \to \grad p\)となる．
+つまり，\(p - \lambda_1 \vb*{v}^2 \to p\)とすれば\(-\grad{p} + \lambda_1 \grad{\vb*{v}^2} \to \grad{p}\)となる．
 これにより，式~\ref{eq:continuous_model}は
 \begin{equation}
-  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad \vb*{v} = -\grad p - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
   \label{eq:continuous_model_absorb_lambda1}
 \end{equation}
 となる．
@@ -167,15 +167,15 @@
 これによって式~\ref{eq:continuous_model_absorb_lambda1}を無次元化していく．
 \begin{empheq}[left=\empheqlbrace]{align*}
   \pdv{\vb*{v}}{t} &\to \frac{L}{T^2} \pdv{\vb*{v}}{t} \\
-  \lambda_0 \vb*{v} \cdot \grad \vb*{v} &\to \lambda_0 \frac{L}{T^2} \vb*{v} \cdot \grad \vb*{v} \\
-  \grad p &\to \frac{L}{T^2} \grad p \\
+  \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} &\to \lambda_0 \frac{L}{T^2} \vb*{v} \cdot \grad{\vb*{v}} \\
+  \grad{p} &\to \frac{L}{T^2} \grad{p} \\
   (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} &\to \qty(\alpha \frac{L}{T} + \beta \frac{L^3}{T^3} \abs{\vb*{v}}^2) \vb*{v} \\
   \Gamma_0 \laplacian \vb*{v} &\to \Gamma_0 \frac{1}{LT} \laplacian \vb*{v} \\
   \Gamma_2 \qty(\laplacian)^2 \vb*{v} &\to \Gamma_2 \frac{1}{L^3 T} \qty(\laplacian)^2 \vb*{v}
 \end{empheq}
 全ての項に（時間微分項の係数の逆数である）\(T^2/L\)を乗じて，
 \begin{empheq}{align}
-  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad \vb*{v} = &-\grad p - \qty(\alpha T + \beta \frac{L^2}{T} \abs{\vb*{v}}^2) \vb*{v} \nonumber \\
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = &-\grad{p} - \qty(\alpha T + \beta \frac{L^2}{T} \abs{\vb*{v}}^2) \vb*{v} \nonumber \\
     &+ \Gamma_0 \frac{T}{L^2} \laplacian \vb*{v} - \Gamma_2 \frac{T}{L^4} \qty(\laplacian)^2 \vb*{v}
   \label{eq:continuous_model_absorb_lambda1_nondimensionalise}
 \end{empheq}
@@ -187,8 +187,8 @@
 \end{equation}
 と書き直して
 \begin{empheq}{align}
-  \pdv{\vb*{v}}{t} + \lambda \vb*{v} \cdot \grad \vb*{v} &= -\grad p - \qty(\alpha + 1) \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v} - 2\laplacian \vb*{v} - \qty(\laplacian)^2 \vb*{v} \nonumber \\
-    &= -\grad p - \qty(1+\laplacian)^2 \vb*{v} - \alpha \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v}
+  \pdv{\vb*{v}}{t} + \lambda \vb*{v} \cdot \grad{\vb*{v}} &= -\grad{p} - \qty(\alpha + 1) \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v} - 2\laplacian \vb*{v} - \qty(\laplacian)^2 \vb*{v} \nonumber \\
+    &= -\grad{p} - \qty(1+\laplacian)^2 \vb*{v} - \alpha \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v}
   \label{eq:continuous_model_nondimensionalise}
 \end{empheq}
 となる．
