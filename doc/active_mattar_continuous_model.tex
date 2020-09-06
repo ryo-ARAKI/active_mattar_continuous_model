@@ -197,6 +197,31 @@
 
 \section{渦度方程式の導出}
 
+一般に，数値流体力学において圧力を解くのはきわめて大変である．
+これは，圧力勾配の評価が非圧縮性と関係しており，圧力のPoisson方程式を解くためには全空間の情報が必要なためである．
+しかし，圧力\(p\)はスカラー場であることから，圧力勾配のrotをとると\(0\)になることが分かる．
+\begin{equation}
+  \curl[\grad{p}] = \varepsilon_{ijk} \pdv{p}{x_j}{x_k} =  0
+\end{equation}
+ここで\(\varepsilon_{ijk}\)はLevi--Civita記号（Eddingtonのイプシロン）である．
+
+これを利用して，無次元化された支配方程式~\ref{eq:continuous_model_nondimensionalise}の渦度方程式を考える~\cite[S1]{James}．
+各項のrotを考えると，
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \curl[\pdv{\vb*{v}}{t}] &= \pdv{\vb*{\omega}}{t} \\
+  \curl[\lambda \vb*{v} \cdot \grad{\vb*{v}}] &= \lambda \vb*{v} \cdot \grad{\vb*{\omega}} - \lambda \vb*{\omega} \cdot \grad{\vb*{v}} \\
+  \curl[\grad{p}] &= 0 \\
+  \curl[\qty(1+\laplacian)^2 \vb*{v}] &= \qty(1+\laplacian)^2 \vb*{\omega} \\
+  \curl[\alpha \vb*{v}] &= \alpha \vb*{\omega} \\
+  \curl[\beta \abs{\vb*{v}}^2 \vb*{v}] &= \beta \curl(\abs{\vb*{v}}^2 \vb*{v}) \\
+\end{empheq}
+よって，渦度方程式は
+\begin{equation}
+  \pdv{\vb*{\omega}}{t} + \lambda \vb*{v} \cdot \grad{\vb*{\omega}} = \lambda \vb*{\omega} \cdot \grad{\vb*{v}} - \qty(1+\laplacian)^2 \vb*{\omega} - \alpha \vb*{\omega} - \beta \curl(\abs{\vb*{v}}^2 \vb*{v})
+  \label{eq:continuous_model_nondimensionalise_vorticity}
+\end{equation}
+となる~\footnote{文献~\cite[S1]{James}で\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}\)の項が無いのは二次元で考えているから？（\(\because \omega_z\)と\(\grad\)が直交するので\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}=0\)）}．
+
 
 \section{Fourierスペクトル法を用いた数値計算に向けて}
 
