@@ -149,6 +149,80 @@
 本節では，先行研究~\cite{Wensink2012a, Dunkel2013a}で議論されている連続体モデルの安定性解析についてまとめる．
 とくに，松本~\cite{Matsumoto2014b}で議論されているようなモデルのパラメータ域と乱流を破壊するような不安定性（モデルのill-posedness）について理解したい．
 
+\(\Gamma_0 < 0\)と\(\beta > 0\)，\(\Gamma_2 > 0\)を仮定する．
+
+任意の\(\alpha\)に対し，支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}は乱れた等方状態に対応する不動点
+\begin{equation}
+  \mathcal{S}_i \colon (\vb*{v}, p) = (\vb*{0}, p_0)
+  \label{eq:disordered_isotropic_fixed_point}
+\end{equation}
+をもつ．
+\(p_0\)は圧力パラメータ．
+
+\(\alpha < 0\)のとき大域極性秩序状態の多様体に対応する（corresponding to a manifold of globally ordered polar states）新しい不動点のクラス
+\begin{equation}
+  \mathcal{S}_p \colon (\vb*{v}, p) = (\vb*{v}_0, p_0)
+  \label{eq:disordered_isotropic_fixed_point}
+\end{equation}
+が生じる．
+ここで\(\vb*{v}_0\)は任意の配向と一定の流速\(\vb*{v}_0 = \sqrt{\abs{\alpha}/\beta} =\vcentcolon v_0\)をもつ定数ベクトルである．
+
+
+\subsection{乱れた等方状態\(\mathcal{S}_i\)の安定性}
+\label{subsec:stability_of_the_disordered_isotropic_state}
+
+支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}を等方状態のまわりで微小な速度と圧力への摂動に対し線形化することを考える．
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \vb*{v} &= \vb*{\varepsilon} \\
+  p &= p_0 + \eta
+\end{empheq}
+ただし\(\eta \ll \abs{p_0}\)．
+摂動のリーディングオーダーをとると，
+\begin{empheq}[left=\empheqlbrace]{align}
+  0 &= \div{\vb*{\varepsilon}}
+  \label{eq:incompressibility_perturbation} \\
+  \pdv{\vb*{\varepsilon}}{t} &= -\grad \eta - \alpha \vb*{\varepsilon} + \Gamma_0 \laplacian \vb*{\varepsilon} - \Gamma_2 \qty(\laplacian)^2 \vb*{\varepsilon}.
+  \label{eq:continuous_model_perturbation}
+\end{empheq}
+摂動を
+\begin{equation}
+  (\eta, \vb*{\varepsilon}) = (\hat{\eta}, \hat{\vb*{\varepsilon}}) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+  \label{eq:perturbation_exponential}
+\end{equation}
+と書き\(k = \abs{\vb*{k}}\)と定義すると，摂動の式は
+\begin{empheq}[left=\empheqlbrace]{align}
+  0 &= \hat{\vb*{\varepsilon}} \cdot \vb*{k}
+  \label{eq:incompressibility_perturbation_exponential} \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \hat{\eta} \vb*{k} - \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) \hat{\vb*{\varepsilon}}
+  \label{eq:continuous_model_perturbation_exponential}
+\end{empheq}
+となる．
+式~\ref{eq:continuous_model_perturbation}を\(\vb*{k}\)と内積して
+\begin{empheq}{align*}
+  \sigma \hat{\vb*{\varepsilon}} \cdot \vb*{k} = -\mathrm{i} \hat{\eta} k^2 - \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) \hat{\vb*{\varepsilon}} \cdot \vb*{k} &= 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential} \\
+  \qty{ \sigma + \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) } \hat{\vb*{\varepsilon}} \cdot \vb*{k} &= 0 \qquad \because \hat{\eta} = 0
+\end{empheq}
+ここで\(\hat{\eta}=0\)は式の実部と虚部の比較から従う．
+最後の式のカッコ内が\(0\)になるので（？）
+\begin{equation}
+  \sigma(\vb*{k}) = -\qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4).
+  \label{eq:sigma}
+\end{equation}
+
+初めに仮定した\(\Gamma_0 < 0\)と\(\Gamma_2 > 0\)より\(\sigma > 0\)となるのは\(k_-^2 < k^2 < k_+^2\)のとき（\(k^2\)に対する上に凸な二次方程式）．
+二次方程式の解の公式より
+\begin{equation}
+  k_{\pm}^2 = \frac{\abs{\Gamma_0}}{\Gamma_2} \qty( \frac{1}{2} \pm \sqrt{ \frac{1}{4} - \frac{\alpha \Gamma_2}{\abs{\Gamma_0}^2} } )
+  \label{eq:k_pm}
+\end{equation}
+平方根の内部\(>0\)から
+\begin{equation}
+  4\alpha < \frac{\abs{\Gamma_0}^2}{\Gamma_2}.
+  \label{eq:alpha_condition}
+\end{equation}
+
+\(\alpha < 0\)に対して等方状態は一般に長波長（小さな\(k\)）摂動に対し不安定となる．
+
 
 \section{支配方程式の無次元化}
 \label{sec:governing_equation_nondimensionalisation}
