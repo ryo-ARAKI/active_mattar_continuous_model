@@ -44,6 +44,9 @@
 % +++++++++++++++++++++++++++++++++++++++++++
 \begin{document}
 \maketitle
+
+\textcolor{HotPink}{この色の箇所}は理解できていない文章や行間を埋められていない式など．
+
 \tableofcontents
 
 \section{連続体モデル方程式の導出}
@@ -107,7 +110,7 @@
 なる特徴速さで決まる大域極秩序状態となる．
 
 最後に対称かつトレースなしテンソル\(\vb*{E}\)について議論する．
-これを，active nematicsの理論を元にして
+これを，\textcolor{HotPink}{active nematicsの理論を元にして}
 \begin{equation}
   E_{ij} = \Gamma_0 \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) - \Gamma_2 \laplacian \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) + S q_{ij}
   \label{eq:rate-of-strain_tensor}
@@ -119,13 +122,13 @@
   \label{eq:mean_field_approximation_of_Q_tensor}
   \tag{\cite[Eq. 20]{Wensink2012a}}
 \end{equation}
-は\(\vb*{Q}\)テンソルの平均場近似であり，アクティブ応力（active stress）の寄与を表す．
+は\textcolor{HotPink}{\(\vb*{Q}\)テンソルの平均場近似}であり，アクティブ応力（active stress）の寄与を表す．
 \(\gamma_0 > 0\)のとき\(S=\Gamma_2=0\)ととれば，式~\ref{eq:mean_field_approximation_of_Q_tensor}は通常の粘度\(\Gamma_0\)のrate-of-strainテンソルとなる．
 
 安定性解析から，\(\Gamma_0 < 0\)を許すとき\(\Gamma_2 > 0\)である必要がある．
-また，\(S>0\)はpullerで\(S<0\)はpusherなアクティブマターを表現する．
+また，\textcolor{HotPink}{\(S>0\)はpullerで\(S<0\)はpusher}なアクティブマターを表現する．
 
-直感的には，\(\Gamma\)の項は応力テンソルの（\(\vb*{v}\)に対し線形な）機械的な展開から生じ，\(\Gamma_2\)は長距離多粒子相関に対応すると理解できる．
+直感的には，\(\Gamma\)の項は応力テンソルの（\(\vb*{v}\)に対し線形な）展開から生じ，\(\Gamma_2\)は長距離多粒子相関に対応すると理解できる．
 
 式~\ref{eq:rate-of-strain_tensor}を式~\ref{eq:generalised_NS}に代入して閉じた方程式が得られる．
 \begin{empheq}{align}
@@ -147,7 +150,7 @@
 \end{equation}
 をえる．
 
-\(\Gamma\)の項はSwift--Hohenberg理論における高次微分項と似ており，このモデルにおいて準カオス的な流れパターンを作り出すために不可欠な項である．
+\(\Gamma\)の項は\textcolor{HotPink}{Swift--Hohenberg理論における高次微分項}と似ており，このモデルにおいて準カオス的な流れパターンを作り出すために不可欠な項である．
 
 
 \section{2次元安定性解析}
@@ -217,9 +220,9 @@
   \qty{ \sigma + \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) } \hat{\vb*{\varepsilon}} \cdot \vb*{k} &= 0 \qquad \because \hat{\eta} = 0
 \end{empheq}
 ここで\(\hat{\eta}=0\)は式の実部と虚部の比較から従う．
-最後の式のカッコ内が\(0\)になるので（？）
+\textcolor{HotPink}{最後の式のカッコ内が\(0\)になるので}
 \begin{equation}
-  \sigma(\vb*{k}) = -\qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4).
+  \textcolor{HotPink}{\sigma(\vb*{k}) = -\qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4).}
   \label{eq:sigma}
   \tag{\cite[Eq. 30]{Wensink2012a}}
 \end{equation}
@@ -238,7 +241,7 @@
   \tag{\cite[Eq. 32]{Wensink2012a}}
 \end{equation}
 
-\(\alpha < 0\)に対して等方状態は一般に長波長（小さな\(k\)）摂動に対し不安定となる．
+\textcolor{HotPink}{\(\alpha < 0\)に対して等方状態は一般に長波長（小さな\(k\)）摂動に対し不安定となる．}
 
 
 \subsection{極性秩序状態\(\mathcal{S}_p\)の安定性}
@@ -286,11 +289,11 @@
 \end{empheq}
 ここで
 \begin{equation}
-  \vb*{A} = \mqty(2\alpha & 0 \\ 0 & 0) - \qty( \Gamma_0 k^2 + \Gamma_2 k^4 + \mathrm{i} \lambda_0 k_x v_0 ) \vb*{I}
+  \textcolor{HotPink}{\vb*{A} = \mqty(2\alpha & 0 \\ 0 & 0) - \qty( \Gamma_0 k^2 + \Gamma_2 k^4 + \mathrm{i} \lambda_0 k_x v_0 ) \vb*{I}}
   \label{eq:perturbation_matrix}
   \tag{\cite[Eq. 38]{Wensink2012a}}
 \end{equation}
-である（導出できてない）．
+である．
 ただし\(\vb*{I}\)は単位行列である．
 式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}を\(\mathrm{i}\vb*{k}\)と内積して非圧縮性~\ref{eq:incompressibility_perturbation_exponential_orthogonal}を用いることで，
 \begin{empheq}{align}
@@ -321,19 +324,22 @@
   \label{eq:eigenvalue_specrum}
   \tag{\cite[Eq. 42]{Wensink2012a}}
 \end{equation}
-となり，\(0\)固有値モードはGoldstoneモードに対応する．
-非\(0\)固有値は固有ベクトル\((-k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．
+となり，\textcolor{HotPink}{\(0\)固有値モードはGoldstoneモードに対応する．
+非\(0\)固有値は固有ベクトル\((-k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．}
 
 
 \subsection{安定性解析のまとめ}
 \label{subsec:summary_stability_analysis}
 
+\textcolor{HotPink}{
 式~\ref{eq:sigma}と~\ref{eq:eigenvalue_specrum}は，\(\alpha < 0\)および\(\Gamma_0 < 0\)に対し二つの不動点は同時に不安定となり，準定常で空間非一様なダイナミックアトラクタが存在することを示唆する．
 反対に式~\ref{eq:eigenvalue_specrum}から明らかなように，\(\Gamma_0 > 0\)では極性状態が安定となる．
+}
 
+\textcolor{HotPink}{
 \(k\)の奇数や非整数乗の項を加えることで似たような不安定性を生成できるが，このようなモデルに対応する位置空間の動的方程式は非整数階偏微分方程式となる．
 このような非整数モデルは長距離などより複雑な相互作用をもつ系のモデリングに有用かもしれない．
-
+}
 
 \section{支配方程式の無次元化}
 \label{sec:governing_equation_nondimensionalisation}
@@ -349,7 +355,7 @@
 \end{equation}
 となる．
 
-続いて，時間スケール\(T = 4\Gamma_2/\Gamma_0^2\)と長さスケール\(L = \sqrt{-2\Gamma_2/\Gamma_0}\)を導入し，方程式を無次元化する~\footnote{この量はどこから出てくる？安定性解析？}．
+続いて，\textcolor{HotPink}{時間スケール\(T = 4\Gamma_2/\Gamma_0^2\)と長さスケール\(L = \sqrt{-2\Gamma_2/\Gamma_0}\)}を導入し，方程式を無次元化する．
 \begin{equation}
   \pdv{t} \to \frac{1}{T} \pdv{t}, \qquad \vb*{v} \to \frac{L}{T} \vb*{v}, \qquad \grad \to \frac{1}{L} \grad, \qquad p \to \frac{L^2}{T^2} p
   \label{eq:nondimensionalization_list}
@@ -382,7 +388,7 @@
   \label{eq:continuous_model_nondimensionalise}
 \end{empheq}
 となる．
-式~\ref{eq:continuous_model}にあったパラメータのうち，\(\lambda_1\)と\((\Gamma_0, \Gamma_2)\)がそれぞれ圧力\(p\)へのくりこみと勝手な変数変換によって消えていることに注意する~\footnote{これらの操作の妥当性？とくに\(\Gamma\)の項を定数としているのはよいのか？}．
+式~\ref{eq:continuous_model}にあったパラメータのうち，\textcolor{HotPink}{\(\lambda_1\)と\((\Gamma_0, \Gamma_2)\)がそれぞれ圧力\(p\)へのくりこみと勝手な変数変換によって消えていることに注意する}~\footnote{\textcolor{HotPink}{これらの操作の妥当性？とくに\(\Gamma\)の項を定数としているのはよいのか？}}．
 
 
 \section{渦度方程式の導出}
@@ -390,14 +396,14 @@
 
 一般に，数値流体力学において圧力を解くのはきわめて大変である．
 これは，圧力勾配の評価が非圧縮性と関係しており，圧力のPoisson方程式を解くためには全空間の情報が必要なためである．
-しかし，圧力\(p\)はスカラー場であることから，圧力勾配のrotをとると\(0\)になることが分かる．
+しかし，圧力\(p\)はスカラー場であることから，圧力勾配の\(\curl\)をとると\(0\)になることが分かる．
 \begin{equation}
   \curl[\grad{p}] = \varepsilon_{ijk} \pdv{p}{x_j}{x_k} =  0
 \end{equation}
 ここで\(\varepsilon_{ijk}\)はLevi--Civita記号（Eddingtonのイプシロン）である．
 
 これを利用して，無次元化された支配方程式~\ref{eq:continuous_model_nondimensionalise}の渦度方程式を考える~\cite[S1]{James}．
-各項のrotを考えると，
+各項の\(\curl\)を考えると，
 \begin{empheq}[left=\empheqlbrace]{align*}
   \curl[\pdv{\vb*{v}}{t}] &= \pdv{\vb*{\omega}}{t} \\
   \curl[\lambda \vb*{v} \cdot \grad{\vb*{v}}] &= \lambda \vb*{v} \cdot \grad{\vb*{\omega}} - \lambda \vb*{\omega} \cdot \grad{\vb*{v}} \\
@@ -411,7 +417,7 @@
   \pdv{\vb*{\omega}}{t} + \lambda \vb*{v} \cdot \grad{\vb*{\omega}} = \lambda \vb*{\omega} \cdot \grad{\vb*{v}} - \qty(1+\laplacian)^2 \vb*{\omega} - \alpha \vb*{\omega} - \beta \curl(\abs{\vb*{v}}^2 \vb*{v})
   \label{eq:continuous_model_nondimensionalise_vorticity}
 \end{equation}
-となる~\footnote{文献~\cite[S1]{James}で\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}\)の項が無いのは二次元で考えているから？（\(\because \omega_z\)と\(\grad\)が直交するので\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}=0\)）}．
+となる~\footnote{\textcolor{HotPink}{文献~\cite[S1]{James}で\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}\)の項が無いのは二次元で考えているから？}（\(\because \omega_z\)と\(\grad\)が直交するので\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}=0\)）}．
 
 
 \section{Fourierスペクトル法を用いた数値計算に向けて}
@@ -430,7 +436,7 @@ Fourierスペクトル法では，式~\ref{eq:continuous_model_nondimensionalise
 
 また，非線形項の評価にともなって生じるalias誤差を除去するために\(2/3\)則~\footnote{波数モードのうち低波数の\(2/3\)側のみを用いて非線形項を評価することで，本来定義しているよりも高次モードが発生することを防ぐ}や\(3/2\)則~\footnote{非線形項の評価の際，本来の定義の\(3/2\)倍のモードを用意して計算することで「折り返し」によって低波数側に誤差が伝播することを防ぐ}をもちいてdealiasingをおこなう．
 
-※N--S方程式は\(2\)次の非線形性なので\(2/3\)則あるいは\(3/2\)則で良い．今回のモデルは\(3\)次の非線形性をもつため，dealiasing手法についてよく考える必要がある~\footnote{文献~\cite{James}では ``\(1/2\) dealiasing'' を実装している？}．
+※N--S方程式は\(2\)次の非線形性なので\(2/3\)則あるいは\(3/2\)則で良い．\textcolor{HotPink}{今回のモデルは\(3\)次の非線形性をもつため，dealiasing手法についてよく考える必要がある}~\footnote{文献~\cite{James}では ``\(1/2\) dealiasing'' を実装している？}．
 
 
 \printbibliography[title=参考文献]
