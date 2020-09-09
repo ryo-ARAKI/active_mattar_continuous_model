@@ -81,6 +81,7 @@
 \begin{equation}
   \div{\vb*{v}} = \pdv{v_i}{x_i} = 0 \qquad i=1,\dots,d
   \label{eq:incompressibility}
+  \tag{\cite[Eq. 16]{Wensink2012a}}
 \end{equation}
 で定義できる．
 ただし\(d\)は空間次元である．
@@ -89,6 +90,7 @@
 \begin{equation}
   \pdv{\vb*{v}}{t} + \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \div{\vb*{E}}
   \label{eq:generalised_NS}
+  \tag{\cite[Eq. 17]{Wensink2012a}}
 \end{equation}
 で記述される．
 \(p\)は圧力，\(\alpha\)と\(\beta\)はパラメータで，\(\vb*{v}\)に依存するひずみ率テンソル（rate-of-strain tensor）\(\vb*{E}\)は以降で定義する．
@@ -100,6 +102,7 @@
 \begin{equation}
   v_0 = \sqrt{\frac{\abs{a}}{\beta}}
   \label{eq:bistable_velocity_potential}
+  \tag{\cite[Eq. 18]{Wensink2012a}}
 \end{equation}
 なる特徴速さで決まる大域極秩序状態となる．
 
@@ -108,11 +111,13 @@
 \begin{equation}
   E_{ij} = \Gamma_0 \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) - \Gamma_2 \laplacian \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) + S q_{ij}
   \label{eq:rate-of-strain_tensor}
+  \tag{\cite[Eq. 19]{Wensink2012a}}
 \end{equation}
 と表現する．
 \begin{equation}
   q_{ij} = v_i v_j - \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2
   \label{eq:mean_field_approximation_of_Q_tensor}
+  \tag{\cite[Eq. 20]{Wensink2012a}}
 \end{equation}
 は\(\vb*{Q}\)テンソルの平均場近似であり，アクティブ応力（active stress）の寄与を表す．
 \(\gamma_0 > 0\)のとき\(S=\Gamma_2=0\)ととれば，式~\ref{eq:mean_field_approximation_of_Q_tensor}は通常の粘度\(\Gamma_0\)のrate-of-strainテンソルとなる．
@@ -132,11 +137,13 @@
 \begin{equation}
   \lambda_0 = 1 - S, \qquad \lambda_1 = -\frac{S}{d}
   \label{eq:def_lambda0_lambda1}
+  \tag{\cite[Eq. 21]{Wensink2012a}}
 \end{equation}
 とおけば，
 \begin{equation}
   \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} + \lambda_1 \grad{\vb*{v}^2} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
   \label{eq:continuous_model}
+  \tag{\cite[Eq. 22]{Wensink2012a}}
 \end{equation}
 をえる．
 
@@ -155,6 +162,7 @@
 \begin{equation}
   \mathcal{S}_i \colon (\vb*{v}, p) = (\vb*{0}, p_0)
   \label{eq:disordered_isotropic_fixed_point}
+  \tag{\cite[Eq. 23]{Wensink2012a}}
 \end{equation}
 をもつ．
 \(p_0\)は圧力パラメータ．
@@ -163,6 +171,7 @@
 \begin{equation}
   \mathcal{S}_p \colon (\vb*{v}, p) = (\vb*{v}_0, p_0)
   \label{eq:disordered_isotropic_fixed_point}
+  \tag{\cite[Eq. 24]{Wensink2012a}}
 \end{equation}
 が生じる．
 ここで\(\vb*{v}_0\)は任意の配向と一定の流速\(\vb*{v}_0 = \sqrt{\abs{\alpha}/\beta} =\vcentcolon v_0\)をもつ定数ベクトルである．
@@ -180,21 +189,26 @@
 摂動のリーディングオーダーをとると，
 \begin{empheq}[left=\empheqlbrace]{align}
   0 &= \div{\vb*{\varepsilon}}
-  \label{eq:incompressibility_perturbation} \\
+  \label{eq:incompressibility_perturbation}
+  \tag{\cite[Eq. 25]{Wensink2012a}} \\
   \pdv{\vb*{\varepsilon}}{t} &= -\grad \eta - \alpha \vb*{\varepsilon} + \Gamma_0 \laplacian \vb*{\varepsilon} - \Gamma_2 \qty(\laplacian)^2 \vb*{\varepsilon}.
   \label{eq:continuous_model_perturbation}
+  \tag{\cite[Eq. 26]{Wensink2012a}}
 \end{empheq}
 摂動を
 \begin{equation}
   (\eta, \vb*{\varepsilon}) = (\hat{\eta}, \hat{\vb*{\varepsilon}}) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
   \label{eq:perturbation_exponential}
+  \tag{\cite[Eq. 27]{Wensink2012a}}
 \end{equation}
 と書き\(k = \abs{\vb*{k}}\)と定義すると，摂動の式は
 \begin{empheq}[left=\empheqlbrace]{align}
   0 &= \hat{\vb*{\varepsilon}} \cdot \vb*{k}
-  \label{eq:incompressibility_perturbation_exponential} \\
+  \label{eq:incompressibility_perturbation_exponential}
+  \tag{\text{\cite[Eq. 28]{Wensink2012a}}} \\
   \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \hat{\eta} \vb*{k} - \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) \hat{\vb*{\varepsilon}}
   \label{eq:continuous_model_perturbation_exponential}
+  \tag{\text{\cite[Eq. 29]{Wensink2012a}}}
 \end{empheq}
 となる．
 式~\ref{eq:continuous_model_perturbation}を\(\vb*{k}\)と内積して
@@ -207,6 +221,7 @@
 \begin{equation}
   \sigma(\vb*{k}) = -\qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4).
   \label{eq:sigma}
+  \tag{\cite[Eq. 30]{Wensink2012a}}
 \end{equation}
 
 初めに仮定した\(\Gamma_0 < 0\)と\(\Gamma_2 > 0\)より\(\sigma > 0\)となるのは\(k_-^2 < k^2 < k_+^2\)のとき（\(k^2\)に対する上に凸な二次方程式）．
@@ -214,11 +229,13 @@
 \begin{equation}
   k_{\pm}^2 = \frac{\abs{\Gamma_0}}{\Gamma_2} \qty( \frac{1}{2} \pm \sqrt{ \frac{1}{4} - \frac{\alpha \Gamma_2}{\abs{\Gamma_0}^2} } )
   \label{eq:k_pm}
+  \tag{\cite[Eq. 31]{Wensink2012a}}
 \end{equation}
 平方根の内部\(>0\)から
 \begin{equation}
   4\alpha < \frac{\abs{\Gamma_0}^2}{\Gamma_2}.
   \label{eq:alpha_condition}
+  \tag{\cite[Eq. 32]{Wensink2012a}}
 \end{equation}
 
 \(\alpha < 0\)に対して等方状態は一般に長波長（小さな\(k\)）摂動に対し不安定となる．
@@ -229,10 +246,10 @@
 
 \(\alpha < 0\)で実現されうる極性状態\((\vb*{v}_0, p_0)\)に注目する．
 摂動
-\begin{empheq}[left=\empheqlbrace]{align*}
-  \vb*{v} &= \vb*{v}_0 + \vb*{\varepsilon} \\
-  p &= p_0 + \eta
-\end{empheq}
+\begin{equation}
+  \vb*{v} = \vb*{v}_0 + \vb*{\varepsilon}, \qquad p = p_0 + \eta
+  \tag{\cite[Eq. 33]{Wensink2012a}}
+\end{equation}
 について，\(\vb*{v}_0\)と平行・直交する成分に分解することを考え，
 \begin{equation*}
   \vb*{\varepsilon} = \vb*{\varepsilon}_\parallel + \vb*{\varepsilon}_\bot, \qquad \vb*{v}_0 \cdot \vb*{\varepsilon}_\parallel = v_0 \varepsilon_\parallel, \qquad \vb*{v}_0 \cdot \vb*{\varepsilon}_\bot = 0
@@ -248,6 +265,7 @@
 \begin{equation}
   \abs{\vb*{v}} \approx v_0^2 + 2 v_0 \varepsilon_\parallel
   \label{eq:v_squared_approximation}
+  \tag{\cite[Eq. 34]{Wensink2012a}}
 \end{equation}
 に注意しておく．
 
@@ -255,18 +273,22 @@
 \begin{equation}
   (\eta, \varepsilon_\parallel, \varepsilon_\bot) = (\hat{\eta}, \hat{\varepsilon}_\parallel, \hat{\varepsilon}_\bot) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
   \label{eq:perturbation_exponential_orthogonal}
+  \tag{\cite[Eq. 35]{Wensink2012a}}
 \end{equation}
 を用いて支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}の摂動に対するリーディングオーダーをとると，
 \begin{empheq}[left=\empheqlbrace]{align}
   0 &= \hat{\vb*{\varepsilon}} \cdot \vb*{k}
-  \label{eq:incompressibility_perturbation_exponential_orthogonal} \\
+  \label{eq:incompressibility_perturbation_exponential_orthogonal}
+  \tag{\text{\cite[Eq. 36]{Wensink2012a}}} \\
   \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i}\qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}}
   \label{eq:continuous_model_perturbation_exponential_orthogonal}
+  \tag{\text{\cite[Eq. 37]{Wensink2012a}}}
 \end{empheq}
 ここで
 \begin{equation}
   \vb*{A} = \mqty(2\alpha & 0 \\ 0 & 0) - \qty( \Gamma_0 k^2 + \Gamma_2 k^4 + \mathrm{i} \lambda_0 k_x v_0 ) \vb*{I}
   \label{eq:perturbation_matrix}
+  \tag{\cite[Eq. 38]{Wensink2012a}}
 \end{equation}
 である（導出できてない）．
 ただし\(\vb*{I}\)は単位行列である．
@@ -275,6 +297,7 @@
   \sigma \hat{\vb*{\varepsilon}} \cdot \mathrm{i}\vb*{k} &= \qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) k^2 + \qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \mathrm{i}\vb*{k} = 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential_orthogonal} \nonumber \\
   \therefore \hat{\eta} &= 2v_0 \lambda_1 \hat{\varepsilon}_\parallel - \mathrm{i} \frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2}.
   \label{eq:hateta_exponential_orthogonal}
+  \tag{\text{\cite[Eq. 39]{Wensink2012a}}}
 \end{empheq}
 こうして得られた\(\hat{\eta}\)をもう一度式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}に代入することで，
 \begin{empheq}{align}
@@ -283,17 +306,20 @@
     &= \vb*{\Pi}(\vb*{k}) \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
     &= \vb*{A}_\bot \hat{\vb*{\varepsilon}}.
     \label{eq:hatvarepsilon_exponential_orthogonal}
+  \tag{\cite[Eq. 41]{Wensink2012a}}
 \end{empheq}
 ただし，\(\vb*{\Pi}\)はベクトル\(\vb*{k}\)の直交写像，
 \begin{equation}
   \Pi_{ij}(\vb*{k}) \vcentcolon= \delta_{ij} - \frac{k_i k_j}{k^2}.
   \label{eq:Pi}
+  \tag{\cite[Eq. 40]{Wensink2012a}}
 \end{equation}
 
 以上より，\(\vb*{A}_\bot\)の固有値スペクトルは
 \begin{equation}
   \sigma(\vb*{k}) \in \qty{ 0, -\qty( \Gamma_0 k^2 + \Gamma_2 k^4 -2\alpha \frac{k_x^2}{k^2} ) -\mathrm{i} \lambda_0 v_0 k_x }
   \label{eq:eigenvalue_specrum}
+  \tag{\cite[Eq. 42]{Wensink2012a}}
 \end{equation}
 となり，\(0\)固有値モードはGoldstoneモードに対応する．
 非\(0\)固有値は固有ベクトル\((-k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．
