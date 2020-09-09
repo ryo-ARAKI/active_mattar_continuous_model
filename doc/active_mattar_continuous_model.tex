@@ -224,6 +224,81 @@
 \(\alpha < 0\)に対して等方状態は一般に長波長（小さな\(k\)）摂動に対し不安定となる．
 
 
+\subsection{極性秩序状態\(\mathcal{S}_p\)の安定性}
+\label{subsec:stability_of_the_ordered_polar_state}
+
+\(\alpha < 0\)で実現されうる極性状態\((\vb*{v}_0, p_0)\)に注目する．
+摂動
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \vb*{v} &= \vb*{v}_0 + \vb*{\varepsilon} \\
+  p &= p_0 + \eta
+\end{empheq}
+について，\(\vb*{v}_0\)と平行・直交する成分に分解することを考え，
+\begin{equation*}
+  \vb*{\varepsilon} = \vb*{\varepsilon}_\parallel + \vb*{\varepsilon}_\bot, \qquad \vb*{v}_0 \cdot \vb*{\varepsilon}_\parallel = v_0 \varepsilon_\parallel, \qquad \vb*{v}_0 \cdot \vb*{\varepsilon}_\bot = 0
+\end{equation*}
+である．
+このとき，一般性を失わずに\(\vb*{v}_0 = v_0 \vb*{e}_x\)とおくことができる．
+よって，
+\begin{equation*}
+  \vb*{\varepsilon}_\parallel = (\varepsilon_\parallel, 0), \qquad \vb*{\varepsilon}_\bot = (0, \varepsilon_\bot)
+\end{equation*}
+である．
+また，
+\begin{equation}
+  \abs{\vb*{v}} \approx v_0^2 + 2 v_0 \varepsilon_\parallel
+  \label{eq:v_squared_approximation}
+\end{equation}
+に注意しておく．
+
+前節と同じように摂動を指数で表示し，
+\begin{equation}
+  (\eta, \varepsilon_\parallel, \varepsilon_\bot) = (\hat{\eta}, \hat{\varepsilon}_\parallel, \hat{\varepsilon}_\bot) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+  \label{eq:perturbation_exponential_orthogonal}
+\end{equation}
+を用いて支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}の摂動に対するリーディングオーダーをとると，
+\begin{empheq}[left=\empheqlbrace]{align}
+  0 &= \hat{\vb*{\varepsilon}} \cdot \vb*{k}
+  \label{eq:incompressibility_perturbation_exponential_orthogonal} \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i}\qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}}
+  \label{eq:continuous_model_perturbation_exponential_orthogonal}
+\end{empheq}
+ここで
+\begin{equation}
+  \vb*{A} = \mqty(2\alpha & 0 \\ 0 & 0) - \qty( \Gamma_0 k^2 + \Gamma_2 k^4 + \mathrm{i} \lambda_0 k_x v_0 ) \vb*{I}
+  \label{eq:perturbation_matrix}
+\end{equation}
+である（導出できてない）．
+ただし\(\vb*{I}\)は単位行列である．
+式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}を\(\mathrm{i}\vb*{k}\)と内積して非圧縮性~\ref{eq:incompressibility_perturbation_exponential_orthogonal}を用いることで，
+\begin{empheq}{align}
+  \sigma \hat{\vb*{\varepsilon}} \cdot \mathrm{i}\vb*{k} &= \qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) k^2 + \qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \mathrm{i}\vb*{k} = 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential_orthogonal} \nonumber \\
+  \therefore \hat{\eta} &= 2v_0 \lambda_1 \hat{\varepsilon}_\parallel - \mathrm{i} \frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2}.
+  \label{eq:hateta_exponential_orthogonal}
+\end{empheq}
+こうして得られた\(\hat{\eta}\)をもう一度式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}に代入することで，
+\begin{empheq}{align}
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i}\qty( 2v_0 \lambda_1 \hat{\varepsilon}_\parallel - \mathrm{i} \frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
+    &= -\frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2} \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
+    &= \vb*{\Pi}(\vb*{k}) \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
+    &= \vb*{A}_\bot \hat{\vb*{\varepsilon}}.
+    \label{eq:hatvarepsilon_exponential_orthogonal}
+\end{empheq}
+ただし，\(\vb*{\Pi}\)はベクトル\(\vb*{k}\)の直交写像，
+\begin{equation}
+  \Pi_{ij}(\vb*{k}) \vcentcolon= \delta_{ij} - \frac{k_i k_j}{k^2}.
+  \label{eq:Pi}
+\end{equation}
+
+以上より，\(\vb*{A}_\bot\)の固有値スペクトルは
+\begin{equation}
+  \sigma(\vb*{k}) \in \qty{ 0, -\qty( \Gamma_0 k^2 + \Gamma_2 k^4 -2\alpha \frac{k_x^2}{k^2} ) -\mathrm{i} \lambda_0 v_0 k_x }
+  \label{eq:eigenvalue_specrum}
+\end{equation}
+となり，\(0\)固有値モードはGoldstoneモードに対応する．
+非\(0\)固有値は固有ベクトル\((-k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．
+
+
 \section{支配方程式の無次元化}
 \label{sec:governing_equation_nondimensionalisation}
 
