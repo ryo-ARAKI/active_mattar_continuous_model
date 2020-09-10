@@ -268,7 +268,7 @@
 \begin{empheq}{align}
   \abs{\vb*{v}} &= \abs{v_0 \vb*{e}_x + \varepsilon_\parallel \vb*{e}_x + \varepsilon_\bot \vb*{e}_y}^2 \nonumber \\
     &= v_0^2 + \varepsilon_\parallel^2 + \varepsilon_\bot^2 + 2 v_0 \varepsilon_\parallel + 2 v_0 \varepsilon_\bot + 2 \varepsilon_\parallel \varepsilon_\bot \nonumber \\
-    &\approx v_0^2 + 2 v_0 \varepsilon_\parallel \qquad \vb*{v_0} \cdot \vb*{\varepsilon}_\bot = 0
+    &\approx v_0^2 + 2 v_0 \varepsilon_\parallel \qquad \because \vb*{v_0} \cdot \vb*{\varepsilon}_\bot = 0
   \label{eq:v_squared_approximation}
   \tag{\text{\cite[Eq. 34]{Wensink2012a}}}
 \end{empheq}
@@ -297,8 +297,9 @@
 \end{equation}
 である．
 ただし\(\vb*{I}\)は単位行列である．
+この導出は~\ref{subsubsec:ordered_polar_state_perturbation_leading_order}節でおこなう．
 
-式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}を\(\mathrm{i}\vb*{k}\)と内積して非圧縮性~\ref{eq:incompressibility_perturbation_exponential_orthogonal}を用いることで，
+式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}を\(\mathrm{i}\vb*{k}\)と内積して非圧縮性（~\ref{eq:incompressibility_perturbation_exponential_orthogonal}）を用いることで，
 \begin{empheq}{align}
   \sigma \hat{\vb*{\varepsilon}} \cdot \mathrm{i}\vb*{k} &= \qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) k^2 + \qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \mathrm{i}\vb*{k} = 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential_orthogonal} \nonumber \\
   \therefore \hat{\eta} &= 2v_0 \lambda_1 \hat{\varepsilon}_\parallel - \mathrm{i} \frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2}.
@@ -484,7 +485,7 @@
   \lambda_0 \to \lambda, \qquad \alpha T \to \alpha + 1, \qquad \beta \frac{L^2}{T} \to \beta, \qquad \Gamma_0 \frac{T}{L^2} \to -2, \qquad \Gamma_2 \frac{T}{L^4} \to 1
   \label{eq:redefine_parameters}
 \end{equation}
-と書き直して
+と書き直して，
 \begin{empheq}{align}
   \pdv{\vb*{v}}{t} + \lambda \vb*{v} \cdot \grad{\vb*{v}} &= -\grad{p} - \qty(\alpha + 1) \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v} - 2\laplacian \vb*{v} - \qty(\laplacian)^2 \vb*{v} \nonumber \\
     &= -\grad{p} - \qty(1+\laplacian)^2 \vb*{v} - \alpha \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v}
