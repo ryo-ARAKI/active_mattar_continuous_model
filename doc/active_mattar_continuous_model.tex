@@ -26,7 +26,7 @@
 % ===========================================
 % 独自スタイルの導入
 % ===========================================
-\usepackage{/home/ryo/.config/LaTeX/mystyle}
+\usepackage{mystyle}
 {
   \theoremstyle{plain}
   \newtheorem{assumption}{仮定}
@@ -331,7 +331,7 @@
 非\(0\)固有値は固有ベクトル\((- k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．}
 
 
-\subsubsection*{\ref{eq:continuous_model}の摂動に対するリーディングオーダーについて}
+\subsubsection*{式~\ref{eq:continuous_model}の摂動に対するリーディングオーダーについて}
 \label{subsubsec:ordered_polar_state_perturbation_leading_order}
 
 2次元で定義された非圧縮連続体方程式
@@ -425,8 +425,8 @@
 
 以上より，摂動の項をまとめると（\(\exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)\)でくくれる項をとりだしてくると）
 \begin{empheq}{align}
-  \sigma \hat{\vb*{\varepsilon}} + \mathrm{i} k_x v_0 \hat{\vb*{\varepsilon}} &= - \mathrm{i} \vb*{k} \hat{\eta} + 2\mathrm{i} \vb*{k} \lambda_1 v_0 \hat{\varepsilon}_\parallel + \mqty(2\alpha & 0 \\ 0 & 0) \hat{\vb*{\varepsilon}} - k^2 \Gamma_0 \hat{\vb*{\varepsilon}} - k^4 \Gamma_2 \hat{\vb*{\varepsilon}} \nonumber \\
-  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \qty{ \hat{\eta} -2v_0 \lambda_1 \hat{\varepsilon}_\parallel } \vb*{k} + \qty{ \mqty(2\alpha & 0 \\ 0 & 0) - k^2 \Gamma_0 - k^4 \Gamma_2 - \mathrm{i} k_x v_0 } \hat{\vb*{\varepsilon}}
+  \sigma \hat{\vb*{\varepsilon}} + \mathrm{i} \lambda_0 k_x v_0 \hat{\vb*{\varepsilon}} &= - \mathrm{i} \vb*{k} \hat{\eta} + 2\mathrm{i} \vb*{k} \lambda_1 v_0 \hat{\varepsilon}_\parallel + \mqty(2\alpha & 0 \\ 0 & 0) \hat{\vb*{\varepsilon}} - k^2 \Gamma_0 \hat{\vb*{\varepsilon}} - k^4 \Gamma_2 \hat{\vb*{\varepsilon}} \nonumber \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \qty{ \hat{\eta} -2v_0 \lambda_1 \hat{\varepsilon}_\parallel } \vb*{k} + \qty{ \mqty(2\alpha & 0 \\ 0 & 0) - k^2 \Gamma_0 - k^4 \Gamma_2 - \mathrm{i} \lambda_0 k_x v_0 } \hat{\vb*{\varepsilon}}
 \end{empheq}
 となり式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}が導かれた．
 
