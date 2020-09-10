@@ -265,11 +265,13 @@
 \end{equation*}
 である．
 また，
-\begin{equation}
-  \abs{\vb*{v}} \approx v_0^2 + 2 v_0 \varepsilon_\parallel
+\begin{empheq}{align}
+  \abs{\vb*{v}} &= \abs{v_0 \vb*{e}_x + \varepsilon_\parallel \vb*{e}_x + \varepsilon_\bot \vb*{e}_y}^2 \nonumber \\
+    &= v_0^2 + \varepsilon_\parallel^2 + \varepsilon_\bot^2 + 2 v_0 \varepsilon_\parallel + 2 v_0 \varepsilon_\bot + 2 \varepsilon_\parallel \varepsilon_\bot \nonumber \\
+    &\approx v_0^2 + 2 v_0 \varepsilon_\parallel \qquad \vb*{v_0} \cdot \vb*{\varepsilon}_\bot = 0
   \label{eq:v_squared_approximation}
-  \tag{\cite[Eq. 34]{Wensink2012a}}
-\end{equation}
+  \tag{\text{\cite[Eq. 34]{Wensink2012a}}}
+\end{empheq}
 に注意しておく．
 
 前節と同じように摂動を指数で表示し，
@@ -295,6 +297,7 @@
 \end{equation}
 である．
 ただし\(\vb*{I}\)は単位行列である．
+
 式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}を\(\mathrm{i}\vb*{k}\)と内積して非圧縮性~\ref{eq:incompressibility_perturbation_exponential_orthogonal}を用いることで，
 \begin{empheq}{align}
   \sigma \hat{\vb*{\varepsilon}} \cdot \mathrm{i}\vb*{k} &= \qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) k^2 + \qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \mathrm{i}\vb*{k} = 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential_orthogonal} \nonumber \\
@@ -325,7 +328,107 @@
   \tag{\cite[Eq. 42]{Wensink2012a}}
 \end{equation}
 となり，\textcolor{HotPink}{\(0\)固有値モードはGoldstoneモードに対応する．
-非\(0\)固有値は固有ベクトル\((-k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．}
+非\(0\)固有値は固有ベクトル\((- k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．}
+
+
+\subsubsection*{\ref{eq:continuous_model}の摂動に対するリーディングオーダーについて}
+\label{subsubsec:ordered_polar_state_perturbation_leading_order}
+
+2次元で定義された非圧縮連続体方程式
+\begin{empheq}{align*}
+  \div{\vb*{v}} &= 0 \\
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} &= -\grad{p} + \lambda_1 \grad{\vb*{v}^2} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+\end{empheq}
+に，
+\begin{empheq}{align*}
+  \vb*{v} &= \vb*{v}_0 + \vb*{\varepsilon} = v_0 \vb*{e}_x + \varepsilon_\parallel \vb*{e}_x + \varepsilon_\bot \vb*{e}_y \\
+  p &= p_0 + \eta \\
+  (\eta, \varepsilon_\parallel, \varepsilon_\bot) &= (\hat{\eta}, \hat{\varepsilon}_\parallel, \hat{\varepsilon}_\bot) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+なる摂動を与えたときのリーディングオーダーの方程式を導く．
+
+\begin{itemize}
+  \item L.H.S.第1項
+\end{itemize}
+\begin{empheq}{align}
+  \pdv{\vb*{v}}{t} &= \pdv{\vb*{v}_0}{t} + \pdv{\vb*{\varepsilon}}{t} \nonumber \\
+    &= \pdv{\vb*{v}_0}{t} + \sigma \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t).
+\end{empheq}
+
+\begin{itemize}
+  \item L.H.S.第2項
+\end{itemize}
+\begin{equation*}
+  \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = \lambda_0 \qty{ \vb*{v}_0 \cdot \grad{\vb*{v}_0} + \vb*{\varepsilon} \cdot \grad{\vb*{v}_0} + \vb*{v}_0 \cdot \grad{\vb*{\varepsilon}} + \vb*{\varepsilon} \cdot \grad{\vb*{\varepsilon}} }
+\end{equation*}
+ここで，
+\begin{empheq}{align*}
+  \vb*{\varepsilon} \cdot \grad{\vb*{v}_0} &= \mathrm{i} (\hat{\vb*{\varepsilon}} \cdot \vb*{k}) \vb*{v}_0 \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) \\
+    &= 0 \qquad \because \text{非圧縮性} \\
+  \vb*{v}_0 \cdot \grad{\vb*{\varepsilon}} &= \qty{ \mqty(v_0 \\ 0) \cdot \mqty(\mathrm{i}k_x \\ \mathrm{i}k_y) } \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) \\
+    &= \mathrm{i} k_x v_0 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) \\
+  \vb*{\varepsilon} \cdot \grad{\vb*{\varepsilon}} &= 0 \qquad \because \vb*{\varepsilon}\text{の二次の項}
+\end{empheq}
+より，結局
+\begin{equation}
+  \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = \lambda_0 \qty{ \vb*{v}_0 \cdot \grad{\vb*{v}_0} + \mathrm{i} k_x v_0 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) }
+\end{equation}
+となる．
+
+\begin{itemize}
+  \item R.H.S.第1項
+\end{itemize}
+\begin{equation*}
+  -\grad{p} = -\grad{p_0} - \mathrm{i} \vb*{k} \hat{\eta} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{equation*}
+
+\begin{itemize}
+  \item R.H.S.第2項
+\end{itemize}
+\begin{empheq}{align}
+  \lambda_1 \grad{\vb*{v}^2} &\approx \lambda_1 \grad{\qty( v_0^2 + 2v_0 \varepsilon_\parallel) } \nonumber \\
+    &= \lambda_1 \grad{v_0^2} \vb*{e}_x + 2\mathrm{i} \vb*{k} \lambda_1 v_0 \hat{\varepsilon}_\parallel  \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+
+\begin{itemize}
+  \item R.H.S.第3項
+\end{itemize}
+\begin{empheq}{align*}
+  - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} &\approx - \qty{\alpha + \beta (v_0^2 + 2v_0 \varepsilon_\parallel)} \qty(\vb*{v}_0 + \vb*{\varepsilon}) \\
+    &= -\qty{ \alpha +\beta (v_0^2 + 2v_0 \varepsilon_\parallel) } \vb*{v}_0 - \qty{ \alpha +\beta (v_0^2 + 2v_0 \varepsilon_\parallel)} \vb*{\varepsilon}
+\end{empheq}
+．．．
+
+\textcolor{HotPink}{
+ここから\(\hat{\vb*{\varepsilon}}\)の項をくくると
+\begin{equation}
+  \mqty(2\alpha & 0 \\ 0 & 0) \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{equation}
+がでてくる？
+}
+
+\begin{itemize}
+  \item R.H.S.第4項
+\end{itemize}
+\begin{empheq}{align}
+  \Gamma_0 \laplacian \vb*{v} &= \Gamma_0 \laplacian \vb*{v}_0 + \Gamma_0 \laplacian \vb*{\varepsilon} \nonumber \\
+    &= \Gamma_0 \laplacian \vb*{v}_0 - k^2 \Gamma_0 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+
+\begin{itemize}
+  \item R.H.S.第5項
+\end{itemize}
+\begin{empheq}{align}
+  -\Gamma_2 \qty(\laplacian)^2 \vb*{v} &= -\Gamma_2 \qty(\laplacian)^2 \vb*{v}_0 -\Gamma_2 \qty(\laplacian)^2 \vb*{\varepsilon} \nonumber \\
+    &= -\Gamma_2 \qty(\laplacian)^2 \vb*{v} - k^4 \Gamma_2 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+
+以上より，摂動の項をまとめると（\(\exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)\)でくくれる項をとりだしてくると）
+\begin{empheq}{align}
+  \sigma \hat{\vb*{\varepsilon}} + \mathrm{i} k_x v_0 \hat{\vb*{\varepsilon}} &= - \mathrm{i} \vb*{k} \hat{\eta} + 2\mathrm{i} \vb*{k} \lambda_1 v_0 \hat{\varepsilon}_\parallel + \mqty(2\alpha & 0 \\ 0 & 0) \hat{\vb*{\varepsilon}} - k^2 \Gamma_0 \hat{\vb*{\varepsilon}} - k^4 \Gamma_2 \hat{\vb*{\varepsilon}} \nonumber \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \qty{ \hat{\eta} -2v_0 \lambda_1 \hat{\varepsilon}_\parallel } \vb*{k} + \qty{ \mqty(2\alpha & 0 \\ 0 & 0) - k^2 \Gamma_0 - k^4 \Gamma_2 - \mathrm{i} k_x v_0 } \hat{\vb*{\varepsilon}}
+\end{empheq}
+となり式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}が導かれた．
 
 
 \subsection{安定性解析のまとめ}
