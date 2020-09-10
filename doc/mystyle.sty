@@ -1,0 +1,157 @@
+% +++++++++++++++++++++++++++++++++++++++++++
+% デフォルト設定・独自コマンドによるLaTeX設定の構築
+% +++++++++++++++++++++++++++++++++++++++++++
+%
+% ===========================================
+% フォント設定
+% ===========================================
+\usepackage{hyperref}  % 図・表・参考文献へのリンク
+\usepackage[utf8]{inputenc} % utf-8を使うためのパッケージ
+\usepackage{indentfirst}
+\usepackage{times} % Use the times font
+% \usepackage{palatino} % Uncomment to use the Palatino font
+\usepackage{otf, url}
+\usepackage{pxjahyper}  % しおりの文字化けを防止
+%
+% ===========================================
+% 図・表関係
+% ===========================================
+\usepackage{here}
+\usepackage{xcolor} % Specify colors by their 'svgnames', for a full list of all colors available see here: http://www.latextemplates.com/svgnames-colors
+\usepackage{booktabs} % 表の横罫線
+\usepackage{lscape}  % 表などを90度回転させる
+\usepackage{longtable} % ページをまたぐ表の作成
+\usepackage{subfig}
+%
+% ===========================================
+% 数学記号
+% ===========================================
+\usepackage{bm, amsfonts, amsmath, amsthm, amssymb, ascmac}  % mathabx
+\usepackage{siunitx}  %SI単位系を上手くやってくれる:\SI{数値}{単位}，\si{単位}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{empheq}
+%
+% ===========================================
+% 図の追加を独自コマンドで定義
+% ===========================================
+\newcommand{\incfig}[3]{ %図の追加を新コマンドで定義
+{\begin{figure}[H]
+  \centering
+  \includegraphics[#1]{#2}
+  \caption{#3 \label{fig:#2}}
+\end{figure}}
+}
+\newcommand{\incfigtwo}[8]{ %2列組の図の追加を新コマンドで定義
+{\begin{figure}[H]
+  \centering
+  \subfloat[#3]{
+    % \hspace{-20mm}
+    \includegraphics[#1]{#2}\label{fig:#2}
+  }
+  \subfloat[#6]{
+    \includegraphics[#4]{#5}\label{fig:#5}
+  }
+  \caption{#7}
+  \label{fig:#8}
+\end{figure}}
+}
+%
+% ===========================================
+% 参考文献のスタイルを独自定義
+% ===========================================
+\renewbibmacro{in:}{} % in: Some journal の "in:" を取る
+\DeclareFieldFormat[article]{title}{#1}  % 論文タイトルにダブルクォートをつけない
+\DeclareSourcemap{%
+  \maps[datatype=bibtex,overwrite=true]{
+    % 雑誌名の短縮形．自分でリストを作る必要がある
+    \map{
+      \step[
+      fieldsource=journal,
+      match={Journal of Fluid Mechanics},
+      replace={J. Fluid Mech.}]%
+      \step[
+      fieldsource=journal,
+      match={Physical Review E},
+      replace={Phys. Rev. E}]%
+      \step[
+      fieldsource=journal,
+      match={Physical Review Letters},
+      replace={Phys. Rev. Lett.}]%
+      \step[
+      fieldsource=journal,
+      match={Physical Review Fluids},
+      replace={Phys. Rev. Fluids}]%
+      \step[
+      fieldsource=journal,
+      match={Annual Review of Fluid Mechanics},
+      replace={Annu. Rev. Fluid Mech.}]%
+      \step[
+      fieldsource=journal,
+      match={Fluid Dynamics Research},
+      replace={Fluid Dyn. Res.}]%
+      \step[
+        fieldsource=journal,
+        match={Journal of Computational Physics},
+        replace={J. Comput. Phys.}]%
+      \step[
+        fieldsource=journal,
+        match={Computer Physics Communications},
+        replace={Comput. Phys. Commun.}]%
+      \step[
+        fieldsource=journal,
+        match={Proceedings of the National Academy of Sciences},
+        replace={Proc. Natl. Acad. Sci. USA}]%
+      \step[
+        fieldsource=journal,
+        match={New Journal of Physics},
+        replace={New J. Phys.}]%
+    }
+  }
+}
+%
+% ===========================================
+% itemizeの行間調整
+% ===========================================
+%
+\let\oldenumerate\enumerate
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+  \olditemize
+  \setlength{\itemsep}{2pt}    % 項目間
+  \setlength{\parskip}{2pt}    % 段落間
+  \setlength{\parsep}{0pt}
+}
+%
+% ===========================================
+% 日本語環境
+% ===========================================
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\renewcommand{\contentsname}{目次}
+
+% biblatexのphysスタイルにおける日本語著者の識別子定義
+\newbibmacro*{finalnamedelim:{japanese}}{%
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\multinamedelim
+}
+
+\renewcommand*{\finalnamedelim}{%
+  \iflistundef{language}
+  {\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\bibstring{and}\space}
+  {\usebibmacro*{finalnamedelim:\strlist{language}}}
+}
+
+\newbibmacro*{name:given-family:{japanese}}[4]{%
+  \usebibmacro{name:delim}{#1#2}\usebibmacro{name:hook}{#1#2}#1\bibnamedelimc#2}
+
+\DeclareNameFormat{given-family}{%
+  \iflistundef{language}{%
+    \ifgiveninits
+      {\usebibmacro{name:given-family}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}}
+      {\usebibmacro{name:given-family}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}
+  }
+  {\usebibmacro*{name:given-family:\strlist{language}}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}
+  \usebibmacro{name:andothers}
+}

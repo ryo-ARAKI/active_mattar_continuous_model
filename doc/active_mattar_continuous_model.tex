@@ -1,0 +1,548 @@
+\documentclass[12pt,dvipdfmx,svgnames,a4paper,uplatex]{ujarticle}
+% +++++++++++++++++++++++++++++++++++++++++++
+% パッケージの導入
+% +++++++++++++++++++++++++++++++++++++++++++
+%
+% ===========================================
+% 原稿設定
+% ===========================================
+% \usepackage{hyoshi}  % 表紙用スタイルファイル
+% 原稿のサイズ
+\usepackage[top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry}
+\usepackage{relsize}
+%
+% ===========================================
+% 図・表関係
+% ===========================================
+\usepackage{graphicx}
+\graphicspath{{./pics}}  % \includegraphicsで参照するディレクトリ
+%
+% ===========================================
+% 参考文献
+% ===========================================
+\usepackage[url=false,isbn=false,doi=false,sorting=none,eprint=false]{biblatex}
+\addbibresource{./ActiveMatter_ContinuousModel.bib}
+%
+% ===========================================
+% 独自スタイルの導入
+% ===========================================
+\usepackage{mystyle}
+{
+  \theoremstyle{plain}
+  \newtheorem{assumption}{仮定}
+}
+%
+% ===========================================
+% 表紙の記述
+% ===========================================
+\title{アクティブマター乱流のメゾスケール連続体モデル}
+\author{荒木 亮}
+\date{\today}
+
+% +++++++++++++++++++++++++++++++++++++++++++
+% 本文
+% +++++++++++++++++++++++++++++++++++++++++++
+\begin{document}
+\maketitle
+
+\textcolor{HotPink}{この色の箇所}は理解できていない文章や行間を埋められていない式など．
+
+\tableofcontents
+
+\section{連続体モデル方程式の導出}
+\label{sec:derive_continuous_model}
+
+本節では，先行研究~\cite{Wensink2012b}（とその supplemental material~\cite{Wensink2012a}）および同じ著者らによる論文~\cite{Dunkel2013a}に基づいて，高密度なバクテリア懸濁液などのアクティブマターをよく記述する連続体モデルを導出する．
+
+
+\subsection{仮定とその正当化}
+\label{subsec:assumptions_justification}
+
+連続体モデルを導出するために次を仮定する．
+
+\begin{assumption}
+  \label{as:incompressibility}
+  十分に高密度なバクテリア懸濁液（や自己推進ロッド（SPR, \textbf{S}elf \textbf{P}ropelled \textbf{R}ods）の集合）は，非圧縮アクティブ流体としてよく近似できる．
+\end{assumption}
+
+\begin{assumption}
+  \label{as:mean_velocity_field}
+  バクテリア流体の本質的なダイナミクスは平均流速\(\vb*{v}(t,\vb*{x})\)で捉えられる~\footnote{ここでの「平均」は粗視化して連続場として捉えるという意味か？}．
+\end{assumption}
+
+仮定\ref{as:incompressibility}はバクテリア乱流の実験やSPRの数値計算において密度ゆらぎが小さいことから正当化できる．
+仮定\ref{as:mean_velocity_field}には議論の余地がある．
+アクティブマターはしばしば長距離相互作用をもち，このとき平均流速と平均の向きはdecoupleされているためである．
+しかし，十分に高密度な環境下ではこれらはよくcoupleする．
+そのため，仮定\ref{as:mean_velocity_field}は十分に高密度な環境で妥当としてよい．
+
+
+\subsection{場の方程式}
+\label{subsec:field_equation}
+
+仮定\ref{as:incompressibility}の非圧縮性は
+\begin{equation}
+  \div{\vb*{v}} = \pdv{v_i}{x_i} = 0 \qquad i=1,\dots,d
+  \label{eq:incompressibility}
+  \tag{\cite[Eq. 16]{Wensink2012a}}
+\end{equation}
+で定義できる．
+ただし\(d\)は空間次元である．
+
+平均流速\(\vb*{v}\)は一般化された\(d\)次元Navier--Stokes方程式
+\begin{equation}
+  \pdv{\vb*{v}}{t} + \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \div{\vb*{E}}
+  \label{eq:generalised_NS}
+  \tag{\cite[Eq. 17]{Wensink2012a}}
+\end{equation}
+で記述される．
+\(p\)は圧力，\(\alpha\)と\(\beta\)はパラメータで，\(\vb*{v}\)に依存するひずみ率テンソル（rate-of-strain tensor）\(\vb*{E}\)は以降で定義する．
+
+\((\alpha + \beta \abs{\vb*{v}}^2) \vb*{v}\)はToner--Tuモデルでの局所駆動項である．
+安定性より\(\beta \ge 0\)が要求されるが，\(\alpha\)は正負どちらでも良い．
+\(\alpha > 0\)のときこの項は系を\(\vb*{v}=0\)の等方平衡状態へ駆動する．
+\(\alpha < 0\)かつ\(\beta > 0\)のとき，速度ポテンシャルは双安定となり
+\begin{equation}
+  v_0 = \sqrt{\frac{\abs{a}}{\beta}}
+  \label{eq:bistable_velocity_potential}
+  \tag{\cite[Eq. 18]{Wensink2012a}}
+\end{equation}
+なる特徴速さで決まる大域極秩序状態となる．
+
+最後に対称かつトレースなしテンソル\(\vb*{E}\)について議論する．
+これを，\textcolor{HotPink}{active nematicsの理論を元にして}
+\begin{equation}
+  E_{ij} = \Gamma_0 \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) - \Gamma_2 \laplacian \qty(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}) + S q_{ij}
+  \label{eq:rate-of-strain_tensor}
+  \tag{\cite[Eq. 19]{Wensink2012a}}
+\end{equation}
+と表現する．
+\begin{equation}
+  q_{ij} = v_i v_j - \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2
+  \label{eq:mean_field_approximation_of_Q_tensor}
+  \tag{\cite[Eq. 20]{Wensink2012a}}
+\end{equation}
+は\textcolor{HotPink}{\(\vb*{Q}\)テンソルの平均場近似}であり，アクティブ応力（active stress）の寄与を表す．
+\(\gamma_0 > 0\)のとき\(S=\Gamma_2=0\)ととれば，式~\ref{eq:mean_field_approximation_of_Q_tensor}は通常の粘度\(\Gamma_0\)のrate-of-strainテンソルとなる．
+
+安定性解析から，\(\Gamma_0 < 0\)を許すとき\(\Gamma_2 > 0\)である必要がある．
+また，\textcolor{HotPink}{\(S>0\)はpullerで\(S<0\)はpusher}なアクティブマターを表現する．
+
+直感的には，\(\Gamma\)の項は応力テンソルの（\(\vb*{v}\)に対し線形な）展開から生じ，\(\Gamma_2\)は長距離多粒子相関に対応すると理解できる．
+
+式~\ref{eq:rate-of-strain_tensor}を式~\ref{eq:generalised_NS}に代入して閉じた方程式が得られる．
+\begin{empheq}{align}
+  \qty(\div{\vb*{E}})_j &= \pdv{E_{ij}}{x_i} = \Gamma_0 \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) - \Gamma_2 \laplacian \qty( \pdv{v_i}{x_i x_j} + \pdv{v_j}{x_i x_i} ) + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_i} \frac{\delta_{ij}}{d} \abs{\vb*{v}}^2) \nonumber \\
+    &= \Gamma_0 \pdv{v_j}{x_i x_i} - \Gamma_2 \laplacian \pdv{v_j}{x_i x_i} + S \qty( \pdv{v_i v_j}{x_i} - \pdv{x_j} \frac{1}{d} \abs{\vb*{v}}^2) \nonumber \\
+  \div{\vb*{E}} &= \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v} + S (\vb*{v} \cdot \grad) \vb*{v} - \frac{S}{d} \grad{\abs{\vb*{v}}^2} \nonumber
+\end{empheq}
+ここで
+\begin{equation}
+  \lambda_0 = 1 - S, \qquad \lambda_1 = -\frac{S}{d}
+  \label{eq:def_lambda0_lambda1}
+  \tag{\cite[Eq. 21]{Wensink2012a}}
+\end{equation}
+とおけば，
+\begin{equation}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} + \lambda_1 \grad{\vb*{v}^2} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+  \label{eq:continuous_model}
+  \tag{\cite[Eq. 22]{Wensink2012a}}
+\end{equation}
+をえる．
+
+\(\Gamma\)の項は\textcolor{HotPink}{Swift--Hohenberg理論における高次微分項}と似ており，このモデルにおいて準カオス的な流れパターンを作り出すために不可欠な項である．
+
+
+\section{2次元安定性解析}
+\label{sec:2D_stability_analysis}
+
+本節では，先行研究~\cite{Wensink2012a, Dunkel2013a}で議論されている連続体モデルの安定性解析についてまとめる．
+とくに，松本~\cite{Matsumoto2014b}で議論されているようなモデルのパラメータ域と乱流を破壊するような不安定性（モデルのill-posedness）について理解したい．
+
+\(\Gamma_0 < 0\)と\(\beta > 0\)，\(\Gamma_2 > 0\)を仮定する．
+
+任意の\(\alpha\)に対し，支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}は乱れた等方状態に対応する不動点
+\begin{equation}
+  \mathcal{S}_i \colon (\vb*{v}, p) = (\vb*{0}, p_0)
+  \label{eq:disordered_isotropic_fixed_point}
+  \tag{\cite[Eq. 23]{Wensink2012a}}
+\end{equation}
+をもつ．
+\(p_0\)は圧力パラメータ．
+
+\(\alpha < 0\)のとき大域極性秩序状態の多様体に対応する（corresponding to a manifold of globally ordered polar states）新しい不動点のクラス
+\begin{equation}
+  \mathcal{S}_p \colon (\vb*{v}, p) = (\vb*{v}_0, p_0)
+  \label{eq:disordered_isotropic_fixed_point}
+  \tag{\cite[Eq. 24]{Wensink2012a}}
+\end{equation}
+が生じる．
+ここで\(\vb*{v}_0\)は任意の配向と一定の流速\(\vb*{v}_0 = \sqrt{\abs{\alpha}/\beta} =\vcentcolon v_0\)をもつ定数ベクトルである．
+
+
+\subsection{乱れた等方状態\(\mathcal{S}_i\)の安定性}
+\label{subsec:stability_of_the_disordered_isotropic_state}
+
+支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}を等方状態のまわりで微小な速度と圧力への摂動に対し線形化することを考える．
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \vb*{v} &= \vb*{\varepsilon} \\
+  p &= p_0 + \eta
+\end{empheq}
+ただし\(\eta \ll \abs{p_0}\)．
+摂動のリーディングオーダーをとると，
+\begin{empheq}[left=\empheqlbrace]{align}
+  0 &= \div{\vb*{\varepsilon}}
+  \label{eq:incompressibility_perturbation}
+  \tag{\cite[Eq. 25]{Wensink2012a}} \\
+  \pdv{\vb*{\varepsilon}}{t} &= -\grad \eta - \alpha \vb*{\varepsilon} + \Gamma_0 \laplacian \vb*{\varepsilon} - \Gamma_2 \qty(\laplacian)^2 \vb*{\varepsilon}.
+  \label{eq:continuous_model_perturbation}
+  \tag{\cite[Eq. 26]{Wensink2012a}}
+\end{empheq}
+摂動を
+\begin{equation}
+  (\eta, \vb*{\varepsilon}) = (\hat{\eta}, \hat{\vb*{\varepsilon}}) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+  \label{eq:perturbation_exponential}
+  \tag{\cite[Eq. 27]{Wensink2012a}}
+\end{equation}
+と書き\(k = \abs{\vb*{k}}\)と定義すると，摂動の式は
+\begin{empheq}[left=\empheqlbrace]{align}
+  0 &= \hat{\vb*{\varepsilon}} \cdot \vb*{k}
+  \label{eq:incompressibility_perturbation_exponential}
+  \tag{\text{\cite[Eq. 28]{Wensink2012a}}} \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \hat{\eta} \vb*{k} - \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) \hat{\vb*{\varepsilon}}
+  \label{eq:continuous_model_perturbation_exponential}
+  \tag{\text{\cite[Eq. 29]{Wensink2012a}}}
+\end{empheq}
+となる．
+式~\ref{eq:continuous_model_perturbation}を\(\vb*{k}\)と内積して
+\begin{empheq}{align*}
+  \sigma \hat{\vb*{\varepsilon}} \cdot \vb*{k} = -\mathrm{i} \hat{\eta} k^2 - \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) \hat{\vb*{\varepsilon}} \cdot \vb*{k} &= 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential} \\
+  \qty{ \sigma + \qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4) } \hat{\vb*{\varepsilon}} \cdot \vb*{k} &= 0 \qquad \because \hat{\eta} = 0
+\end{empheq}
+ここで\(\hat{\eta}=0\)は式の実部と虚部の比較から従う．
+\textcolor{HotPink}{最後の式のカッコ内が\(0\)になるので}
+\begin{equation}
+  \textcolor{HotPink}{\sigma(\vb*{k}) = -\qty(\alpha + \Gamma_0 k^2 + \Gamma_2 k^4).}
+  \label{eq:sigma}
+  \tag{\cite[Eq. 30]{Wensink2012a}}
+\end{equation}
+
+初めに仮定した\(\Gamma_0 < 0\)と\(\Gamma_2 > 0\)より\(\sigma > 0\)となるのは\(k_-^2 < k^2 < k_+^2\)のとき（\(k^2\)に対する上に凸な二次方程式）．
+二次方程式の解の公式より
+\begin{equation}
+  k_{\pm}^2 = \frac{\abs{\Gamma_0}}{\Gamma_2} \qty( \frac{1}{2} \pm \sqrt{ \frac{1}{4} - \frac{\alpha \Gamma_2}{\abs{\Gamma_0}^2} } )
+  \label{eq:k_pm}
+  \tag{\cite[Eq. 31]{Wensink2012a}}
+\end{equation}
+平方根の内部\(>0\)から
+\begin{equation}
+  4\alpha < \frac{\abs{\Gamma_0}^2}{\Gamma_2}.
+  \label{eq:alpha_condition}
+  \tag{\cite[Eq. 32]{Wensink2012a}}
+\end{equation}
+
+\textcolor{HotPink}{\(\alpha < 0\)に対して等方状態は一般に長波長（小さな\(k\)）摂動に対し不安定となる．}
+
+
+\subsection{極性秩序状態\(\mathcal{S}_p\)の安定性}
+\label{subsec:stability_of_the_ordered_polar_state}
+
+\(\alpha < 0\)で実現されうる極性状態\((\vb*{v}_0, p_0)\)に注目する．
+摂動
+\begin{equation}
+  \vb*{v} = \vb*{v}_0 + \vb*{\varepsilon}, \qquad p = p_0 + \eta
+  \tag{\cite[Eq. 33]{Wensink2012a}}
+\end{equation}
+について，\(\vb*{v}_0\)と平行・直交する成分に分解することを考え，
+\begin{equation*}
+  \vb*{\varepsilon} = \vb*{\varepsilon}_\parallel + \vb*{\varepsilon}_\bot, \qquad \vb*{v}_0 \cdot \vb*{\varepsilon}_\parallel = v_0 \varepsilon_\parallel, \qquad \vb*{v}_0 \cdot \vb*{\varepsilon}_\bot = 0
+\end{equation*}
+である．
+このとき，一般性を失わずに\(\vb*{v}_0 = v_0 \vb*{e}_x\)とおくことができる．
+よって，
+\begin{equation*}
+  \vb*{\varepsilon}_\parallel = (\varepsilon_\parallel, 0), \qquad \vb*{\varepsilon}_\bot = (0, \varepsilon_\bot)
+\end{equation*}
+である．
+また，
+\begin{empheq}{align}
+  \abs{\vb*{v}} &= \abs{v_0 \vb*{e}_x + \varepsilon_\parallel \vb*{e}_x + \varepsilon_\bot \vb*{e}_y}^2 \nonumber \\
+    &= v_0^2 + \varepsilon_\parallel^2 + \varepsilon_\bot^2 + 2 v_0 \varepsilon_\parallel + 2 v_0 \varepsilon_\bot + 2 \varepsilon_\parallel \varepsilon_\bot \nonumber \\
+    &\approx v_0^2 + 2 v_0 \varepsilon_\parallel \qquad \because \vb*{v_0} \cdot \vb*{\varepsilon}_\bot = 0
+  \label{eq:v_squared_approximation}
+  \tag{\text{\cite[Eq. 34]{Wensink2012a}}}
+\end{empheq}
+に注意しておく．
+
+前節と同じように摂動を指数で表示し，
+\begin{equation}
+  (\eta, \varepsilon_\parallel, \varepsilon_\bot) = (\hat{\eta}, \hat{\varepsilon}_\parallel, \hat{\varepsilon}_\bot) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+  \label{eq:perturbation_exponential_orthogonal}
+  \tag{\cite[Eq. 35]{Wensink2012a}}
+\end{equation}
+を用いて支配方程式~\ref{eq:incompressibility}，\ref{eq:continuous_model}の摂動に対するリーディングオーダーをとると，
+\begin{empheq}[left=\empheqlbrace]{align}
+  0 &= \hat{\vb*{\varepsilon}} \cdot \vb*{k}
+  \label{eq:incompressibility_perturbation_exponential_orthogonal}
+  \tag{\text{\cite[Eq. 36]{Wensink2012a}}} \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i}\qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}}
+  \label{eq:continuous_model_perturbation_exponential_orthogonal}
+  \tag{\text{\cite[Eq. 37]{Wensink2012a}}}
+\end{empheq}
+ここで
+\begin{equation}
+  \textcolor{HotPink}{\vb*{A} = \mqty(2\alpha & 0 \\ 0 & 0) - \qty( \Gamma_0 k^2 + \Gamma_2 k^4 + \mathrm{i} \lambda_0 k_x v_0 ) \vb*{I}}
+  \label{eq:perturbation_matrix}
+  \tag{\cite[Eq. 38]{Wensink2012a}}
+\end{equation}
+である．
+ただし\(\vb*{I}\)は単位行列である．
+この導出は~\ref{subsubsec:ordered_polar_state_perturbation_leading_order}節でおこなう．
+
+式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}を\(\mathrm{i}\vb*{k}\)と内積して非圧縮性（~\ref{eq:incompressibility_perturbation_exponential_orthogonal}）を用いることで，
+\begin{empheq}{align}
+  \sigma \hat{\vb*{\varepsilon}} \cdot \mathrm{i}\vb*{k} &= \qty( \hat{\eta} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) k^2 + \qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \mathrm{i}\vb*{k} = 0 \qquad \because \mathrm{Eq.}~\ref{eq:incompressibility_perturbation_exponential_orthogonal} \nonumber \\
+  \therefore \hat{\eta} &= 2v_0 \lambda_1 \hat{\varepsilon}_\parallel - \mathrm{i} \frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2}.
+  \label{eq:hateta_exponential_orthogonal}
+  \tag{\text{\cite[Eq. 39]{Wensink2012a}}}
+\end{empheq}
+こうして得られた\(\hat{\eta}\)をもう一度式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}に代入することで，
+\begin{empheq}{align}
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i}\qty( 2v_0 \lambda_1 \hat{\varepsilon}_\parallel - \mathrm{i} \frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2} - 2v_0 \lambda_1 \hat{\varepsilon}_\parallel ) \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
+    &= -\frac{\qty( \vb*{A} \hat{\vb*{\varepsilon}}) \cdot \vb*{k}}{k^2} \vb*{k} + \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
+    &= \vb*{\Pi}(\vb*{k}) \vb*{A} \hat{\vb*{\varepsilon}} \nonumber \\
+    &= \vb*{A}_\bot \hat{\vb*{\varepsilon}}.
+    \label{eq:hatvarepsilon_exponential_orthogonal}
+  \tag{\cite[Eq. 41]{Wensink2012a}}
+\end{empheq}
+ただし，\(\vb*{\Pi}\)はベクトル\(\vb*{k}\)の直交写像，
+\begin{equation}
+  \Pi_{ij}(\vb*{k}) \vcentcolon= \delta_{ij} - \frac{k_i k_j}{k^2}.
+  \label{eq:Pi}
+  \tag{\cite[Eq. 40]{Wensink2012a}}
+\end{equation}
+
+以上より，\(\vb*{A}_\bot\)の固有値スペクトルは
+\begin{equation}
+  \sigma(\vb*{k}) \in \qty{ 0, -\qty( \Gamma_0 k^2 + \Gamma_2 k^4 -2\alpha \frac{k_x^2}{k^2} ) -\mathrm{i} \lambda_0 v_0 k_x }
+  \label{eq:eigenvalue_specrum}
+  \tag{\cite[Eq. 42]{Wensink2012a}}
+\end{equation}
+となり，\textcolor{HotPink}{\(0\)固有値モードはGoldstoneモードに対応する．
+非\(0\)固有値は固有ベクトル\((- k_y, k_x)\)をもち，これは\(\Gamma_0 < 0\)において\(\vb*{k}\)に直交する方向に指数的に増大する\(k\)モードの領域が存在することを示唆する．}
+
+
+\subsubsection*{式~\ref{eq:continuous_model}の摂動に対するリーディングオーダーについて}
+\label{subsubsec:ordered_polar_state_perturbation_leading_order}
+
+2次元で定義された非圧縮連続体方程式
+\begin{empheq}{align*}
+  \div{\vb*{v}} &= 0 \\
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} &= -\grad{p} + \lambda_1 \grad{\vb*{v}^2} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+\end{empheq}
+に，
+\begin{empheq}{align*}
+  \vb*{v} &= \vb*{v}_0 + \vb*{\varepsilon} = v_0 \vb*{e}_x + \varepsilon_\parallel \vb*{e}_x + \varepsilon_\bot \vb*{e}_y \\
+  p &= p_0 + \eta \\
+  (\eta, \varepsilon_\parallel, \varepsilon_\bot) &= (\hat{\eta}, \hat{\varepsilon}_\parallel, \hat{\varepsilon}_\bot) \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+なる摂動を与えたときのリーディングオーダーの方程式を導く．
+
+\begin{itemize}
+  \item L.H.S.第1項
+\end{itemize}
+\begin{empheq}{align}
+  \pdv{\vb*{v}}{t} &= \pdv{\vb*{v}_0}{t} + \pdv{\vb*{\varepsilon}}{t} \nonumber \\
+    &= \pdv{\vb*{v}_0}{t} + \sigma \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t).
+\end{empheq}
+
+\begin{itemize}
+  \item L.H.S.第2項
+\end{itemize}
+\begin{equation*}
+  \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = \lambda_0 \qty{ \vb*{v}_0 \cdot \grad{\vb*{v}_0} + \vb*{\varepsilon} \cdot \grad{\vb*{v}_0} + \vb*{v}_0 \cdot \grad{\vb*{\varepsilon}} + \vb*{\varepsilon} \cdot \grad{\vb*{\varepsilon}} }
+\end{equation*}
+ここで，
+\begin{empheq}{align*}
+  \vb*{\varepsilon} \cdot \grad{\vb*{v}_0} &= \mathrm{i} (\hat{\vb*{\varepsilon}} \cdot \vb*{k}) \vb*{v}_0 \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) \\
+    &= 0 \qquad \because \text{非圧縮性} \\
+  \vb*{v}_0 \cdot \grad{\vb*{\varepsilon}} &= \qty{ \mqty(v_0 \\ 0) \cdot \mqty(\mathrm{i}k_x \\ \mathrm{i}k_y) } \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) \\
+    &= \mathrm{i} k_x v_0 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) \\
+  \vb*{\varepsilon} \cdot \grad{\vb*{\varepsilon}} &= 0 \qquad \because \vb*{\varepsilon}\text{の二次の項}
+\end{empheq}
+より，結局
+\begin{equation}
+  \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = \lambda_0 \qty{ \vb*{v}_0 \cdot \grad{\vb*{v}_0} + \mathrm{i} k_x v_0 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t) }
+\end{equation}
+となる．
+
+\begin{itemize}
+  \item R.H.S.第1項
+\end{itemize}
+\begin{equation*}
+  -\grad{p} = -\grad{p_0} - \mathrm{i} \vb*{k} \hat{\eta} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{equation*}
+
+\begin{itemize}
+  \item R.H.S.第2項
+\end{itemize}
+\begin{empheq}{align}
+  \lambda_1 \grad{\vb*{v}^2} &\approx \lambda_1 \grad{\qty( v_0^2 + 2v_0 \varepsilon_\parallel) } \nonumber \\
+    &= \lambda_1 \grad{v_0^2} \vb*{e}_x + 2\mathrm{i} \vb*{k} \lambda_1 v_0 \hat{\varepsilon}_\parallel  \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+
+\begin{itemize}
+  \item R.H.S.第3項
+\end{itemize}
+\begin{empheq}{align*}
+  - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} &\approx - \qty{\alpha + \beta (v_0^2 + 2v_0 \varepsilon_\parallel)} \qty(\vb*{v}_0 + \vb*{\varepsilon}) \\
+    &= -\qty{ \alpha +\beta (v_0^2 + 2v_0 \varepsilon_\parallel) } \vb*{v}_0 - \qty{ \alpha +\beta (v_0^2 + 2v_0 \varepsilon_\parallel)} \vb*{\varepsilon}
+\end{empheq}
+．．．
+
+\textcolor{HotPink}{
+ここから\(\hat{\vb*{\varepsilon}}\)の項をくくると
+\begin{equation}
+  \mqty(2\alpha & 0 \\ 0 & 0) \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{equation}
+がでてくる？
+}
+
+\begin{itemize}
+  \item R.H.S.第4項
+\end{itemize}
+\begin{empheq}{align}
+  \Gamma_0 \laplacian \vb*{v} &= \Gamma_0 \laplacian \vb*{v}_0 + \Gamma_0 \laplacian \vb*{\varepsilon} \nonumber \\
+    &= \Gamma_0 \laplacian \vb*{v}_0 - k^2 \Gamma_0 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+
+\begin{itemize}
+  \item R.H.S.第5項
+\end{itemize}
+\begin{empheq}{align}
+  -\Gamma_2 \qty(\laplacian)^2 \vb*{v} &= -\Gamma_2 \qty(\laplacian)^2 \vb*{v}_0 -\Gamma_2 \qty(\laplacian)^2 \vb*{\varepsilon} \nonumber \\
+    &= -\Gamma_2 \qty(\laplacian)^2 \vb*{v} - k^4 \Gamma_2 \hat{\vb*{\varepsilon}} \exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)
+\end{empheq}
+
+以上より，摂動の項をまとめると（\(\exp \qty(\mathrm{i} \vb*{k}\cdot\vb*{x} + \sigma t)\)でくくれる項をとりだしてくると）
+\begin{empheq}{align}
+  \sigma \hat{\vb*{\varepsilon}} + \mathrm{i} \lambda_0 k_x v_0 \hat{\vb*{\varepsilon}} &= - \mathrm{i} \vb*{k} \hat{\eta} + 2\mathrm{i} \vb*{k} \lambda_1 v_0 \hat{\varepsilon}_\parallel + \mqty(2\alpha & 0 \\ 0 & 0) \hat{\vb*{\varepsilon}} - k^2 \Gamma_0 \hat{\vb*{\varepsilon}} - k^4 \Gamma_2 \hat{\vb*{\varepsilon}} \nonumber \\
+  \sigma \hat{\vb*{\varepsilon}} &= -\mathrm{i} \qty{ \hat{\eta} -2v_0 \lambda_1 \hat{\varepsilon}_\parallel } \vb*{k} + \qty{ \mqty(2\alpha & 0 \\ 0 & 0) - k^2 \Gamma_0 - k^4 \Gamma_2 - \mathrm{i} \lambda_0 k_x v_0 } \hat{\vb*{\varepsilon}}
+\end{empheq}
+となり式~\ref{eq:continuous_model_perturbation_exponential_orthogonal}が導かれた．
+
+
+\subsection{安定性解析のまとめ}
+\label{subsec:summary_stability_analysis}
+
+\textcolor{HotPink}{
+式~\ref{eq:sigma}と~\ref{eq:eigenvalue_specrum}は，\(\alpha < 0\)および\(\Gamma_0 < 0\)に対し二つの不動点は同時に不安定となり，準定常で空間非一様なダイナミックアトラクタが存在することを示唆する．
+反対に式~\ref{eq:eigenvalue_specrum}から明らかなように，\(\Gamma_0 > 0\)では極性状態が安定となる．
+}
+
+\textcolor{HotPink}{
+\(k\)の奇数や非整数乗の項を加えることで似たような不安定性を生成できるが，このようなモデルに対応する位置空間の動的方程式は非整数階偏微分方程式となる．
+このような非整数モデルは長距離などより複雑な相互作用をもつ系のモデリングに有用かもしれない．
+}
+
+\section{支配方程式の無次元化}
+\label{sec:governing_equation_nondimensionalisation}
+
+本節では，このモデルを二次元で解いて乱流パターン形成について調べた先行研究~\footnote{第二著者にW. Bosが入っている}~\cite[脚注28]{James2017}を参考に，連続モデル方程式~\ref{eq:continuous_model}の無次元化をおこなう．
+
+まず，\(\lambda_1\)の項を圧力項にくりこむ．
+つまり，\(p - \lambda_1 \vb*{v}^2 \to p\)とすれば\(-\grad{p} + \lambda_1 \grad{\vb*{v}^2} \to \grad{p}\)となる．
+これにより，式~\ref{eq:continuous_model}は
+\begin{equation}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = -\grad{p} - (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} + \Gamma_0 \laplacian \vb*{v} - \Gamma_2 \qty(\laplacian)^2 \vb*{v}
+  \label{eq:continuous_model_absorb_lambda1}
+\end{equation}
+となる．
+
+続いて，\textcolor{HotPink}{時間スケール\(T = 4\Gamma_2/\Gamma_0^2\)と長さスケール\(L = \sqrt{-2\Gamma_2/\Gamma_0}\)}を導入し，方程式を無次元化する．
+\begin{equation}
+  \pdv{t} \to \frac{1}{T} \pdv{t}, \qquad \vb*{v} \to \frac{L}{T} \vb*{v}, \qquad \grad \to \frac{1}{L} \grad, \qquad p \to \frac{L^2}{T^2} p
+  \label{eq:nondimensionalization_list}
+\end{equation}
+これによって式~\ref{eq:continuous_model_absorb_lambda1}を無次元化していく．
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \pdv{\vb*{v}}{t} &\to \frac{L}{T^2} \pdv{\vb*{v}}{t} \\
+  \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} &\to \lambda_0 \frac{L}{T^2} \vb*{v} \cdot \grad{\vb*{v}} \\
+  \grad{p} &\to \frac{L}{T^2} \grad{p} \\
+  (\alpha + \beta \abs{\vb*{v}}^2) \vb*{v} &\to \qty(\alpha \frac{L}{T} + \beta \frac{L^3}{T^3} \abs{\vb*{v}}^2) \vb*{v} \\
+  \Gamma_0 \laplacian \vb*{v} &\to \Gamma_0 \frac{1}{LT} \laplacian \vb*{v} \\
+  \Gamma_2 \qty(\laplacian)^2 \vb*{v} &\to \Gamma_2 \frac{1}{L^3 T} \qty(\laplacian)^2 \vb*{v}
+\end{empheq}
+全ての項に（時間微分項の係数の逆数である）\(T^2/L\)を乗じて，
+\begin{empheq}{align}
+  \pdv{\vb*{v}}{t} + \lambda_0 \vb*{v} \cdot \grad{\vb*{v}} = &-\grad{p} - \qty(\alpha T + \beta \frac{L^2}{T} \abs{\vb*{v}}^2) \vb*{v} \nonumber \\
+    &+ \Gamma_0 \frac{T}{L^2} \laplacian \vb*{v} - \Gamma_2 \frac{T}{L^4} \qty(\laplacian)^2 \vb*{v}
+  \label{eq:continuous_model_absorb_lambda1_nondimensionalise}
+\end{empheq}
+となる．
+よって，先行研究の脚注~\cite[脚注28]{James2017}にあるように
+\begin{equation}
+  \lambda_0 \to \lambda, \qquad \alpha T \to \alpha + 1, \qquad \beta \frac{L^2}{T} \to \beta, \qquad \Gamma_0 \frac{T}{L^2} \to -2, \qquad \Gamma_2 \frac{T}{L^4} \to 1
+  \label{eq:redefine_parameters}
+\end{equation}
+と書き直して，
+\begin{empheq}{align}
+  \pdv{\vb*{v}}{t} + \lambda \vb*{v} \cdot \grad{\vb*{v}} &= -\grad{p} - \qty(\alpha + 1) \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v} - 2\laplacian \vb*{v} - \qty(\laplacian)^2 \vb*{v} \nonumber \\
+    &= -\grad{p} - \qty(1+\laplacian)^2 \vb*{v} - \alpha \vb*{v} - \beta \abs{\vb*{v}}^2 \vb*{v}
+  \label{eq:continuous_model_nondimensionalise}
+\end{empheq}
+となる．
+式~\ref{eq:continuous_model}にあったパラメータのうち，\textcolor{HotPink}{\(\lambda_1\)と\((\Gamma_0, \Gamma_2)\)がそれぞれ圧力\(p\)へのくりこみと勝手な変数変換によって消えていることに注意する}~\footnote{\textcolor{HotPink}{これらの操作の妥当性？とくに\(\Gamma\)の項を定数としているのはよいのか？}}．
+
+
+\section{渦度方程式の導出}
+\label{sec:derive_vorticity_equation}
+
+一般に，数値流体力学において圧力を解くのはきわめて大変である．
+これは，圧力勾配の評価が非圧縮性と関係しており，圧力のPoisson方程式を解くためには全空間の情報が必要なためである．
+しかし，圧力\(p\)はスカラー場であることから，圧力勾配の\(\curl\)をとると\(0\)になることが分かる．
+\begin{equation}
+  \curl[\grad{p}] = \varepsilon_{ijk} \pdv{p}{x_j}{x_k} =  0
+\end{equation}
+ここで\(\varepsilon_{ijk}\)はLevi--Civita記号（Eddingtonのイプシロン）である．
+
+これを利用して，無次元化された支配方程式~\ref{eq:continuous_model_nondimensionalise}の渦度方程式を考える~\cite[S1]{James}．
+各項の\(\curl\)を考えると，
+\begin{empheq}[left=\empheqlbrace]{align*}
+  \curl[\pdv{\vb*{v}}{t}] &= \pdv{\vb*{\omega}}{t} \\
+  \curl[\lambda \vb*{v} \cdot \grad{\vb*{v}}] &= \lambda \vb*{v} \cdot \grad{\vb*{\omega}} - \lambda \vb*{\omega} \cdot \grad{\vb*{v}} \\
+  \curl[\grad{p}] &= 0 \\
+  \curl[\qty(1+\laplacian)^2 \vb*{v}] &= \qty(1+\laplacian)^2 \vb*{\omega} \\
+  \curl[\alpha \vb*{v}] &= \alpha \vb*{\omega} \\
+  \curl[\beta \abs{\vb*{v}}^2 \vb*{v}] &= \beta \curl(\abs{\vb*{v}}^2 \vb*{v}) \\
+\end{empheq}
+よって，渦度方程式は
+\begin{equation}
+  \pdv{\vb*{\omega}}{t} + \lambda \vb*{v} \cdot \grad{\vb*{\omega}} = \lambda \vb*{\omega} \cdot \grad{\vb*{v}} - \qty(1+\laplacian)^2 \vb*{\omega} - \alpha \vb*{\omega} - \beta \curl(\abs{\vb*{v}}^2 \vb*{v})
+  \label{eq:continuous_model_nondimensionalise_vorticity}
+\end{equation}
+となる~\footnote{\textcolor{HotPink}{文献~\cite[S1]{James}で\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}\)の項が無いのは二次元で考えているから？}（\(\because \omega_z\)と\(\grad\)が直交するので\(\lambda \vb*{\omega} \cdot \grad{\vb*{v}}=0\)）}．
+
+
+\section{Fourierスペクトル法を用いた数値計算に向けて}
+\label{sec:towards_numerical_simulation_using_Fourier_spectral_method}
+
+\subsection{Fourierスペクトル法のアルゴリズム}
+\label{sec:Fourier_spectral_method_algorithm}
+
+Fourierスペクトル法では，式~\ref{eq:continuous_model_nondimensionalise_vorticity}の渦度\(\vb*{\omega}\)をFourier展開して波数空間で時間発展をおこなう．
+ただし，非線形項の評価を波数空間でおこなうと総波数モードを\(N\)として\(N^2\)の演算が必要となり，非効率的である．
+この問題は，FFT（高速Fourier変換，\textbf{F}ast \textbf{F}ourier \textbf{T}ransform）を用いて物理量を実空間に写して非線形項を評価することで\(N \log N\)の演算量となり解決できる．
+
+
+\subsection{Dealiasingについて}
+\label{sec:dealiasing}
+
+また，非線形項の評価にともなって生じるalias誤差を除去するために\(2/3\)則~\footnote{波数モードのうち低波数の\(2/3\)側のみを用いて非線形項を評価することで，本来定義しているよりも高次モードが発生することを防ぐ}や\(3/2\)則~\footnote{非線形項の評価の際，本来の定義の\(3/2\)倍のモードを用意して計算することで「折り返し」によって低波数側に誤差が伝播することを防ぐ}をもちいてdealiasingをおこなう．
+
+※N--S方程式は\(2\)次の非線形性なので\(2/3\)則あるいは\(3/2\)則で良い．\textcolor{HotPink}{今回のモデルは\(3\)次の非線形性をもつため，dealiasing手法についてよく考える必要がある}~\footnote{文献~\cite{James}では ``\(1/2\) dealiasing'' を実装している？}．
+
+
+\printbibliography[title=参考文献]
+
+\end{document}
